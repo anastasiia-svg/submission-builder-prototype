@@ -421,19 +421,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .cell.cf-hit.user-edited::before{border-color:#3b82f6 transparent transparent transparent}
 .cell.row-issue-bg{background:#fff8e8!important}
 .cell.row-issue-bg.frozen-cell{background:#fff8e8!important}
-.cell.warn-cell{background:#fffbeb!important;position:relative}
-.cell.warn-cell.frozen-cell{background:#fffbeb!important}
-.cell.warn-cell::after{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent #f59e0b transparent transparent;pointer-events:none;z-index:2}
-.cell.warn-cell.user-edited::after{display:none}
-.cell.warn-cell.inconsistent::after{border-color:transparent #f59e0b transparent transparent}
-.cell.warn-cell.cf-hit::before{display:none}
-.row-num .rn-cb{position:absolute;top:50%;left:3px;transform:translateY(-50%);width:13px;height:13px;accent-color:var(--accent);cursor:pointer;opacity:0;transition:opacity .12s}
-.row-num:hover .rn-cb{opacity:1}
-.row-num .rn-cb:checked{opacity:1}
-.row-checked .cell{background:#f8fafc!important}
-.row-checked .cell.frozen-cell{background:#f8fafc!important}
-.row-checked .cell.selected{background:var(--sel-fill)!important}
-.row-checked .row-num{background:#f1f5f9!important}
 .cell.has-tooltip:hover{overflow:visible!important;z-index:50}
 .cell-tooltip{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:100;background:#1f2937;color:#fff;font-size:11px;line-height:1.5;padding:8px 12px;border-radius:6px;width:240px;box-shadow:0 4px 12px rgba(0,0,0,.25);pointer-events:none;white-space:normal}
 .cell-tooltip::before{content:'';position:absolute;bottom:100%;left:16px;border:5px solid transparent;border-bottom-color:#1f2937}
@@ -901,7 +888,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
     <div id="issuesBar" style="display:none"></div>
     <div id="filterBarArea"></div>
     <div class="sheet-wrap" id="sheetWrap"></div>
-    <div class="sel-stats" id="selStats"><span style="color:var(--text-faint)">Select cells to see calculation</span><span class="stat-legend"><span class="legend-warn" style="width:0;height:0;border-style:solid;border-width:0 6px 6px 0;border-color:transparent #f59e0b transparent transparent;display:inline-block"></span> Warning<span style="margin-left:8px"></span><span class="legend-issue"></span> Inconsistency<span style="margin-left:8px"></span><span class="legend-edited"></span> Edited</span></div>
+    <div class="sel-stats" id="selStats"><span style="color:var(--text-faint)">Select cells to see calculation</span><span class="stat-legend"><span class="legend-issue"></span> Issue<span style="margin-left:8px"></span><span class="legend-edited"></span> Edited</span></div>
     <div class="col-pills-wrap" id="colPillsWrap">
       <div class="col-pills" id="colPills"></div>
     </div>
@@ -997,78 +984,6 @@ const CELL_ISSUES={
   '6,4':{priority:'medium',detail:"Inconsistency found for 'City': SOV reports 'North Rosemead', while extracted data shows '445 North Rosemead'. Please verify city name."},
   '10,3':{priority:'low',detail:"Minor formatting difference: SOV shows 'Agoura Road' vs extracted 'Agoura Rd'. Abbreviation only."},
 };
-
-// Per-tab cell warnings — drives amber cell highlights, row-level backgrounds, and tooltips
-// Key format: 'row,col' where col is the column index within that tab's column array
-const TAB_WARNINGS={
-  geo:{
-    '9,7':{priority:'high',type:'accuracy',detail:'Geocoder accuracy is APPROXIMATE — coordinates may be off by 100-300m. Verify pin on map.'},
-    '12,7':{priority:'high',type:'accuracy',detail:'Geocoder accuracy is RANGE_INTERPOLATED — coordinates are estimated from street range, not exact building.'},
-    '15,2':{priority:'medium',type:'discrepancy',detail:"City mismatch: SOV says 'Agoura Hills' but geocoder resolved to 'Westlake Village'. Verify correct city."},
-    '9,5':{priority:'medium',type:'accuracy',detail:'Latitude may be inaccurate — APPROXIMATE geocode precision. Confirm coordinates.'},
-    '9,6':{priority:'medium',type:'accuracy',detail:'Longitude may be inaccurate — APPROXIMATE geocode precision. Confirm coordinates.'},
-    '12,5':{priority:'medium',type:'accuracy',detail:'Latitude interpolated from street range. Actual position may differ.'},
-    '12,6':{priority:'medium',type:'accuracy',detail:'Longitude interpolated from street range. Actual position may differ.'},
-  },
-  val:{
-    '2,15':{priority:'medium',type:'calculation',detail:'TIV calculation mismatch: sum of components = $4,821,300 but extracted TIV = $4,820,000. Delta: $1,300.'},
-    '7,1':{priority:'high',type:'discrepancy',detail:'Building Limit significantly differs from SOV: extracted $1,050,000 vs SOV $1,500,000. Verify source.'},
-    '11,11':{priority:'medium',type:'missing',detail:'Replacement Value is $0 — may be missing from source document. Verify with broker.'},
-    '5,15':{priority:'low',type:'calculation',detail:'TIV includes unverified PPO and UOIB components. Review sub-values.'},
-    '14,14':{priority:'medium',type:'discrepancy',detail:"APC Select value 'Incl' is ambiguous — confirm whether APC is included in Building Limit or separate."},
-  },
-  prim:{
-    '7,7':{priority:'medium',type:'verification',detail:'Year Built (1920) predates typical construction records. Verify with county assessor or broker.'},
-    '3,1':{priority:'low',type:'verification',detail:"ATC Construction Code '1' appears generic. Confirm with detailed construction info."},
-    '10,6':{priority:'high',type:'missing',detail:'Sq Ft Living is blank — required for risk scoring. Check SOV or request from broker.'},
-    '0,3':{priority:'low',type:'verification',detail:"Stories value '1' — verify single-story for a property with Building Limit > $2M."},
-    '16,2':{priority:'medium',type:'discrepancy',detail:"ATC Occupancy code '10' differs from SOV occupancy description. Verify mapping."},
-  },
-  sec:{
-    '0,3':{priority:'low',type:'missing',detail:"Cladding is 'Unknown' — consider requesting from broker for accurate risk score."},
-    '0,4':{priority:'low',type:'missing',detail:"Cripple Walls is 'Unknown' — needed for seismic risk assessment."},
-    '4,4':{priority:'low',type:'missing',detail:"Cripple Walls is 'Unknown' — affects seismic vulnerability scoring."},
-    '4,9':{priority:'low',type:'missing',detail:"Ornamentation status 'Unknown' — affects earthquake loss estimate."},
-    '8,9':{priority:'low',type:'missing',detail:"Ornamentation status 'Unknown' — exterior damage risk cannot be assessed."},
-    '8,12':{priority:'low',type:'missing',detail:"Short Columns is 'Unknown' — important for seismic structural integrity."},
-    '2,2':{priority:'medium',type:'discrepancy',detail:"Flood zone shows 'Yes - x' but flood zone designation not specified. Clarify zone (A, V, X, etc.)."},
-  },
-};
-
-// Helper: get warning for a cell given current tab
-function _getCellWarning(tabId,r,c){
-  const tw=TAB_WARNINGS[tabId];
-  if(!tw) return null;
-  return tw[r+','+c]||null;
-}
-// Helper: check if a row has ANY warning in the current tab
-function _rowHasWarning(tabId,r){
-  const tw=TAB_WARNINGS[tabId];
-  if(!tw) return false;
-  for(const k of Object.keys(tw)){
-    if(parseInt(k.split(',')[0])===r) return true;
-  }
-  // Also check GEO_ISSUES for geo tab
-  if(tabId==='geo'&&GEO_ISSUES[r]) return true;
-  // Also check CELL_ISSUES (which are geo-tab cell issues)
-  if(tabId==='geo'){
-    for(const k of Object.keys(CELL_ISSUES)){
-      if(parseInt(k.split(',')[0])===r) return true;
-    }
-  }
-  return false;
-}
-// Collect all warning rows across data for a tab
-function _getWarningRows(tabId){
-  const rows=new Set();
-  const tw=TAB_WARNINGS[tabId];
-  if(tw) Object.keys(tw).forEach(k=>rows.add(parseInt(k.split(',')[0])));
-  if(tabId==='geo'){
-    Object.keys(GEO_ISSUES).forEach(k=>rows.add(parseInt(k)));
-    Object.keys(CELL_ISSUES).forEach(k=>rows.add(parseInt(k.split(',')[0])));
-  }
-  return rows;
-}
 
 // Data provenance for Values tab (Feature 6)
 // Provenance — shows where each value came from in the SOV
@@ -1235,7 +1150,6 @@ class XSheet {
     this.editedCells=new Set();
     this.editedRows=new Set();
     this.newRows=new Set(); // rows added manually — shown with green indicator
-    this.checkedRows=new Set(); // rows checked via row checkbox — shown with off-white highlight
     this.autoCalcCols={};
     this.wrapMode='clip'; // 'clip' | 'wrap' | 'overflow'
     this.fontSize=12;
@@ -1404,7 +1318,6 @@ class XSheet {
       tr.dataset.row=ri;
       tr.style.height=h+'px';
       if(this.newRows.has(ri)) tr.classList.add('new-row');
-      if(this.checkedRows.has(ri)) tr.classList.add('row-checked');
 
       // row number
       const rn=document.createElement('td');
@@ -1437,19 +1350,7 @@ class XSheet {
       }
       if(this.editedRows.has(ri)) rn.classList.add('row-edited');
       if(isDead) rn.classList.add('dead-row-num');
-      const _tabId=TAB_CFG[_curTabIdx]?.id;
-      const _hasRowIssue=!isDead&&this.hlOn&&_tabId&&_rowHasWarning(_tabId,ri);
-      // Row checkbox
-      if(!isDead){
-        const cb=document.createElement('input');cb.type='checkbox';cb.className='rn-cb';
-        cb.checked=this.checkedRows.has(ri);
-        cb.addEventListener('click',e=>{e.stopPropagation();});
-        cb.addEventListener('change',e=>{
-          if(cb.checked) this.checkedRows.add(ri); else this.checkedRows.delete(ri);
-          tr.classList.toggle('row-checked',cb.checked);
-        });
-        rn.appendChild(cb);
-      }
+      const _hasRowIssue=false;
       rn.addEventListener('contextmenu',e=>{e.preventDefault();this._showRowMenu(e,ri);});
       rn.addEventListener('click',e=>this._selectRow(ri,e));
       tr.appendChild(rn);
@@ -1480,16 +1381,6 @@ class XSheet {
         if(ri===this.anchor.r&&ci===this.anchor.c) td.classList.add('anchor-cell');
         if(this.searchQ&&String(val).toLowerCase().includes(this.searchQ.toLowerCase())) td.classList.add('search-hi');
         if(this.editedCells.has(ri+','+ci)) td.classList.add('user-edited');
-        // Cell-level warning (amber highlight + triangle + tooltip)
-        const _cellWarn=!isDead&&this.hlOn&&_tabId?_getCellWarning(_tabId,ri,ci):null;
-        if(_cellWarn&&!this.editedCells.has(ri+','+ci)){
-          td.classList.add('warn-cell');
-          td.classList.add('has-tooltip');
-          const pri=ISSUE_PRIORITY[_cellWarn.priority||'medium'];
-          const wtip=document.createElement('div');wtip.className='cell-tooltip';
-          wtip.innerHTML=`<span style="font-weight:600;text-transform:uppercase;font-size:9px;letter-spacing:.04em;color:${pri?.badgeText||'#92400e'};background:${pri?.badge||'#fef3c7'};padding:1px 5px;border-radius:3px;margin-right:4px">${pri?.label||'Warning'}</span>${_cellWarn.detail}`;
-          td.appendChild(wtip);
-        }
         if(isDead) td.classList.add('dead-row-cell');
 
         if(isDead){
@@ -1586,12 +1477,16 @@ class XSheet {
             badge.textContent='!';
             td.appendChild(badge);
           }
-          // add tooltip for geo issue rows (if not already warned by cell-level warning)
-          if(_hasRowIssue&&!_cellWarn&&_tabId==='geo'&&GEO_ISSUES[ri]&&!col.frozen&&col.type!=='map'){
-            td.classList.add('has-tooltip');
-            const tip=document.createElement('div');tip.className='cell-tooltip';
-            tip.textContent=GEO_ISSUES[ri].detail;
-            td.appendChild(tip);
+          // add tooltip for any cell in issue rows
+          if(_hasRowIssue&&!col.frozen){
+            const issue=GEO_ISSUES[ri];
+            if(issue){
+              td.classList.add('has-tooltip');
+              const tip=document.createElement('div');
+              tip.className='cell-tooltip';
+              tip.textContent=issue.detail;
+              td.appendChild(tip);
+            }
           }
         }
 
@@ -1643,7 +1538,7 @@ class XSheet {
   }
 
   _isIncon(r,c){
-    return !!CELL_ISSUES[r+','+c];
+    return false; // no hardcoded inconsistencies — use CF rules instead
   }
 
   _getCfStyle(r,c){
@@ -1857,9 +1752,6 @@ class XSheet {
       td.appendChild(inner);
     }
     td.classList.toggle('inconsistent',!!(this.hlOn&&this._isIncon(r,c)));
-    const _tabIdU=TAB_CFG[_curTabIdx]?.id;
-    const warnU=this.hlOn&&_tabIdU?_getCellWarning(_tabIdU,r,c):null;
-    td.classList.toggle('warn-cell',!!warnU&&!this.editedCells.has(r+','+c));
     const cfHit=this._getCfStyle(r,c);
     td.classList.toggle('cf-hit',!!cfHit);
     if(cfHit) td.style.setProperty('--cf-dot',cfHit.border); else td.style.removeProperty('--cf-dot');
@@ -3032,13 +2924,9 @@ function updateTopbarIssues(liveRows,geoCount,deadCnt,hasGeo,hasDead,deadTIV){
   if(!el) return;
   const isGrid=_curTabIdx>=1&&_curTabIdx<=5;
   if(!isGrid){el.innerHTML='';return;}
-  // Count all warnings for the current tab
-  const tabId=TAB_CFG[_curTabIdx]?.id;
-  const warningRows=tabId?_getWarningRows(tabId):new Set();
-  const totalWarnings=warningRows.size;
   let h=`<span class="tbi-chip tbi-default"><span class="tbi-val">${liveRows}</span> properties</span>`;
-  if(totalWarnings>0){
-    h+=`<span class="tbi-chip tbi-warn" style="cursor:pointer" onclick="setViewMode('attention')"><span class="tbi-val">${totalWarnings}</span> warning${totalWarnings!==1?'s':''}</span>`;
+  if(hasGeo){
+    h+=`<span class="tbi-chip tbi-warn" style="cursor:pointer" onclick="geoNavNext()"><span class="tbi-val">${geoCount}</span> issue${geoCount!==1?'s':''}</span>`;
   }
   if(hasDead){
     const fmtTIV='$'+Math.round(deadTIV).toLocaleString();
@@ -3195,14 +3083,6 @@ function _rebuildAllSheets(){
       wrap.appendChild(inner);
       _sheets[cfg.id]=new XSheet(mountId,cfg.cols,cfg.makeData());
       _sheets[cfg.id].deadRowStart=ADDRS.length;
-      // Demo edge cases for initial tab
-      if(cfg.id==='geo'){
-        _sheets['geo'].editedCells.add('1,1');_sheets['geo'].editedRows.add(1);
-        _sheets['geo'].editedCells.add('4,2');_sheets['geo'].editedRows.add(4);
-        _sheets['geo'].log.push({r:1,c:1,ov:'715 E Foothill Boulevard',nv:'715 E Foothill Blvd',t:'Mar 25, 10:14 AM',user:'You'});
-        _sheets['geo'].log.push({r:4,c:2,ov:'Pasadena',nv:'East Pasadena',t:'Mar 25, 10:22 AM',user:'You'});
-        _sheets['geo'].checkedRows.add(2);_sheets['geo'].checkedRows.add(6);
-      }
       _curSheet=_sheets[cfg.id];window._curSheet=_curSheet;
       // Restore settings
       _curSheet.setHighlight(snap.hlOn!==undefined?snap.hlOn:true);
@@ -4084,25 +3964,6 @@ function switchTab(idx,el){
     wrap.appendChild(inner);
     _sheets[cfg.id]=new XSheet(mountId,cfg.cols,cfg.makeData());
     _sheets[cfg.id].deadRowStart=ADDRS.length;
-    // Pre-populate demo edge cases: some edited cells per tab
-    if(cfg.id==='geo'){
-      _sheets['geo'].editedCells.add('1,1');_sheets['geo'].editedRows.add(1);
-      _sheets['geo'].editedCells.add('4,2');_sheets['geo'].editedRows.add(4);
-      _sheets['geo'].log.push({r:1,c:1,ov:'715 E Foothill Boulevard',nv:'715 E Foothill Blvd',t:'Mar 25, 10:14 AM',user:'You'});
-      _sheets['geo'].log.push({r:4,c:2,ov:'Pasadena',nv:'East Pasadena',t:'Mar 25, 10:22 AM',user:'You'});
-      _sheets['geo'].checkedRows.add(2);_sheets['geo'].checkedRows.add(6);
-    }
-    if(cfg.id==='val'){
-      _sheets['val'].editedCells.add('3,1');_sheets['val'].editedRows.add(3);
-      _sheets['val'].editedCells.add('8,11');_sheets['val'].editedRows.add(8);
-      _sheets['val'].log.push({r:3,c:1,ov:'$2,150,000',nv:'$2,175,000',t:'Mar 25, 11:03 AM',user:'You'});
-      _sheets['val'].log.push({r:8,c:11,ov:'$0',nv:'$450,000',t:'Mar 25, 11:15 AM',user:'You'});
-    }
-    if(cfg.id==='prim'){
-      _sheets['prim'].editedCells.add('7,7');_sheets['prim'].editedRows.add(7);
-      _sheets['prim'].log.push({r:7,c:7,ov:'1920',nv:'1925',t:'Mar 26, 9:30 AM',user:'You'});
-      _sheets['prim'].checkedRows.add(0);_sheets['prim'].checkedRows.add(5);
-    }
     if(cfg.id==='val'){
       // Auto-calculate TIV = sum of all dollar columns except TIV itself
       const TIV_KEYS=['bldg_lim','hard','park','apc','cont','soft','stock','edp','ppo','uoib','bi','rv','ee'];
@@ -4542,9 +4403,7 @@ function setViewMode(mode){
     _curSheet._rowFilter=hidden.size>0?hidden:null;
   } else {
     // 'attention' = only rows with issues; 'clean' = rows without issues
-    const tabId=TAB_CFG[_curTabIdx]?.id;
-    const issueRows=tabId?_getWarningRows(tabId):new Set();
-    // Also include GEO_ISSUES and CELL_ISSUES for backward compat
+    const issueRows=new Set();
     Object.keys(GEO_ISSUES).forEach(k=>issueRows.add(parseInt(k)));
     Object.keys(CELL_ISSUES).forEach(k=>{const r=parseInt(k.split(',')[0]);issueRows.add(r);});
     const hidden=new Set();
