@@ -422,8 +422,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .cell.cf-hit.user-edited::before{border-color:#3b82f6 transparent transparent transparent}
 .cell.row-issue-bg{background:var(--bg)!important}
 .cell.row-issue-bg.frozen-cell{background:var(--bg)!important}
-.cell.warn-cell{position:relative}
-.cell.warn-cell.frozen-cell{}
+.cell.warn-cell{background:#fff7ed!important;position:relative}
+.cell.warn-cell.frozen-cell{background:#fff7ed!important}
 .cell.warn-cell::after{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent #f59e0b transparent transparent;pointer-events:none;z-index:2}
 .cell.warn-cell.user-edited::after{display:none}
 .cell.warn-cell.cf-hit::before{display:none}
@@ -504,6 +504,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .totals-cell .cell-inner span{color:var(--text)}
 .totals-rn{background:#e8e8e8!important;font-weight:700;font-size:11px;color:var(--text-muted);border-top:2px solid #bdbdbd!important;text-align:center;position:sticky;left:0;z-index:8}
 
+/* ISSUES BAR — property/excluded count above grid */
+.issues-bar{display:flex;align-items:center;gap:12px;padding:3px 12px;background:#f9f9f9;border-bottom:1px solid var(--border);font-size:11px;color:var(--text-muted);flex-shrink:0;min-height:22px}
+.ib-counts{display:flex;align-items:center;gap:6px}
+.ib-cn{font-weight:600;color:var(--text)}
+.ib-cs{color:#b45309}
+.ib-item{display:flex;align-items:center;gap:4px;cursor:pointer;padding:2px 8px;border-radius:4px;transition:background .15s}
+.ib-item:hover{background:#f0f0f0}
+.ib-icon{font-size:12px}
+.ib-cnt{font-weight:700}
+.ib-label{color:var(--text-muted)}
+.ib-val{font-weight:600;color:var(--text)}
+.ib-geo .ib-icon,.ib-geo .ib-cnt{color:#b45309}
+.ib-dead .ib-icon,.ib-dead .ib-cnt{color:#be185d}
+
 /* SELECTION STATS BAR */
 .sel-stats{display:flex;align-items:center;gap:16px;padding:2px 12px;border-top:1px solid var(--border);background:#f2f2f2;font-size:11px;color:var(--text-muted);flex-shrink:0;min-height:22px;overflow-x:auto}
 .stat-legend{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:10px;color:#999;flex-shrink:0}
@@ -532,7 +546,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 
 /* COLUMN MANAGER DROPDOWN */
 .col-mgr{position:fixed;background:#fff;border:1px solid var(--border-strong);border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.15);z-index:2000;min-width:200px;max-height:360px;display:flex;flex-direction:column;padding:6px 0}
-.col-mgr-title{font-size:11px;font-weight:600;color:var(--text-muted);padding:4px 12px 6px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);margin-bottom:4px}
+.col-mgr-title{font-size:9px;font-weight:600;color:var(--text-muted);padding:4px 12px 6px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);margin-bottom:4px}
 .col-mgr-list{overflow-y:auto;flex:1}
 .col-mgr-row{display:flex;align-items:center;gap:8px;padding:4px 12px;cursor:pointer;font-size:12px}
 .col-mgr-row:hover{background:var(--bg-muted)}
@@ -844,24 +858,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 3 2.2 5.2 5 6 2.8-.8 5-3 5-6V4L7 1.5z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="nav-label">Admin</span>
         </div>
-      </div>
-    </div>
-    <div class="sidebar-sep"></div>
-    <div class="sidebar-grp" id="sidebarStats">
-      <div class="nav-stat" id="navStatProps">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1" stroke="currentColor" stroke-width="1.1"/><line x1="1.5" y1="5.5" x2="12.5" y2="5.5" stroke="currentColor" stroke-width="1.1"/><line x1="5" y1="5.5" x2="5" y2="11.5" stroke="currentColor" stroke-width="1.1"/></svg>
-        <span class="ns-val" id="nsPropsVal">17</span>
-        <span class="ns-lbl">properties</span>
-      </div>
-      <div class="nav-stat nav-stat-warn" id="navStatIssues" style="cursor:pointer" onclick="openAlertPanel()">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L1 12h12L7 1.5z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="5.5" x2="7" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10" r=".6" fill="currentColor"/></svg>
-        <span class="ns-val" id="nsIssuesVal">0</span>
-        <span class="ns-lbl">warnings</span>
-      </div>
-      <div class="nav-stat nav-stat-err" id="navStatExcluded" style="cursor:pointer" onclick="deadNavNext()">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 2.5l9 9M12 7A5 5 0 112 7a5 5 0 0110 0z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-        <span class="ns-val" id="nsExclVal">0</span>
-        <span class="ns-lbl">excluded</span>
       </div>
     </div>
   </div>
@@ -1227,7 +1223,6 @@ function renderAlertPanel(){
     h+=`<div class="ap-group-meta">${filtered.length} alert${filtered.length!==1?'s':''}</div></div>`;
     h+=`<span class="ap-group-count">${filtered.length}</span>`;
     h+=`</div>`;
-
     h+=`<div class="ap-group-items${expanded?'':' collapsed'}">`;
     for(const it of filtered){
       const tabLabel=TAB_DISPLAY_NAMES[it.tabId]||it.tabId;
@@ -1249,7 +1244,6 @@ function renderAlertPanel(){
       }
       h+=`</div>`;
     }
-    // Bulk actions — detect all unique source labels in this group
     if(filtered.length>1){
       const srcCounts={};
       for(const it of filtered){
@@ -1263,12 +1257,9 @@ function renderAlertPanel(){
         h+=`</div>`;
       }
     }
-    h+=`</div>`;
-    h+=`</div>`;
+    h+=`</div></div>`;
   }
-  if(visibleGroups===0){
-    h+=`<div class="ap-empty">No unresolved alerts.</div>`;
-  }
+  if(visibleGroups===0) h+=`<div class="ap-empty">No unresolved alerts.</div>`;
   body.innerHTML=h;
 }
 
@@ -1746,7 +1737,7 @@ class XSheet {
         sepTd.innerHTML=`<span style="font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.03em">REMOVED ROWS (${deadCntNow})</span><span style="font-size:10px;color:var(--text-faint);margin-left:8px">Not included in extracted data</span>`;
         sepTr.appendChild(sepTd);tbody.appendChild(sepTr);
       }
-      const h=(_showSovAnnotations?Math.max(this.rowH[ri]||36,36):(this.rowH[ri]||22));
+      const h=isDead?22:(_showSovAnnotations?Math.max(this.rowH[ri]||36,36):(this.rowH[ri]||22));
       const tr=document.createElement('tr');
       tr.dataset.ri=ri;
       tr.dataset.row=ri;
@@ -1869,13 +1860,13 @@ class XSheet {
           if(hasCoords||issue){
             const btn=document.createElement('button');
             const pri=issue?ISSUE_PRIORITY[issue.priority||'medium']:null;
-            const pinSvg='<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>';
+            const pinSvg='<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>';
             btn.className='map-cell-btn'+(issue?' map-'+(issue.priority||'medium'):'');
             btn.innerHTML=pinSvg+'<span style="margin-left:3px">Geolocation</span>';
             btn.onclick=(e)=>{e.stopPropagation();showGeoDetail(ri);_geoIssueIdx=Object.keys(GEO_ISSUES).map(Number).indexOf(ri);};
             td.appendChild(btn);
             if(issue&&pri){
-              td.classList.add('cf-hit');td.style.setProperty('--cf-dot',pri.border);
+              td.classList.add('warn-cell');
               td.classList.add('has-tooltip');
               const tip=document.createElement('div');tip.className='cell-tooltip';
               tip.innerHTML=`<span style="font-weight:600;text-transform:uppercase;font-size:9px;letter-spacing:.04em;color:${pri.badgeText};background:${pri.badge};padding:1px 5px;border-radius:3px;margin-right:4px">${pri.label}</span>${issue.detail}`;
@@ -2174,13 +2165,13 @@ class XSheet {
       if(hasCoords||issue){
         const btn=document.createElement('button');
         const pri=issue?ISSUE_PRIORITY[issue.priority||'medium']:null;
-        const pinSvg='<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>';
+        const pinSvg='<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>';
         btn.className='map-cell-btn'+(issue?' map-'+(issue.priority||'medium'):'');
         btn.innerHTML=issue?pinSvg+'<span style="margin-left:3px">'+issue.short+'</span>':pinSvg;
         btn.onclick=(e)=>{e.stopPropagation();showGeoDetail(r);_geoIssueIdx=Object.keys(GEO_ISSUES).map(Number).indexOf(r);};
         td.appendChild(btn);
         if(issue&&pri){
-          td.classList.add('cf-hit');td.style.setProperty('--cf-dot',pri.border);
+          td.classList.add('warn-cell');
           td.classList.add('has-tooltip');
           const tip=document.createElement('div');tip.className='cell-tooltip';
           tip.innerHTML=`<span style="font-weight:600;text-transform:uppercase;font-size:9px;letter-spacing:.04em;color:${pri.badgeText};background:${pri.badge};padding:1px 5px;border-radius:3px;margin-right:4px">${pri.label}</span>${issue.detail}`;
@@ -3359,8 +3350,11 @@ function updateIssuesBar(){
   let h='';
   // Property count summary (Feature #7) — clear count per stakeholder feedback
   const liveRows=_curSheet?(_curSheet.deadRowStart>=0?_curSheet.deadRowStart:_curSheet.data.length):ADDRS.length;
-  h+=`<div class="ib-counts"><span class="ib-cn">${liveRows} properties extracted</span>`;
-  if(deadCnt>0) h+=`<span class="ib-cs">· ${deadCnt} removed</span>`;
+  const hiddenByFilter=_curSheet&&_curSheet._rowFilter?_curSheet._rowFilter.size:0;
+  const visibleRows=liveRows-(hiddenByFilter>deadCnt?hiddenByFilter-deadCnt:0);
+  h+=`<div class="ib-counts"><span class="ib-cn">${liveRows} properties</span>`;
+  if(hiddenByFilter>0&&_viewMode!=='valid') h+=`<span class="ib-cs">· showing ${visibleRows>0?visibleRows:liveRows-hiddenByFilter}</span>`;
+  if(deadCnt>0) h+=`<span class="ib-cs">· ${deadCnt} excluded</span>`;
   h+=`</div>`;
   if(hasGeo){
     h+=`<div class="ib-item ib-geo" onclick="geoNavNext()"><span class="ib-icon">⚠</span><span class="ib-cnt">${geoKeys.length}</span><span class="ib-label">location issue${geoKeys.length!==1?'s':''}</span></div>`;
@@ -3380,32 +3374,56 @@ function updateTopbarIssues(liveRows,geoCount,deadCnt,hasGeo,hasDead,deadTIV){
 }
 
 function updateSidebarAttention(props,issues,excluded){
-  const pv=document.getElementById('nsPropsVal');
-  const iv=document.getElementById('nsIssuesVal');
-  const ev=document.getElementById('nsExclVal');
-  if(pv) pv.textContent=props||0;
-  // Use global total warnings count
+  // Update toolbar alert badge (warnings only)
   let totalWarn=0;
   for(const [tid,tw] of Object.entries(TAB_WARNINGS)){
     const sh=_sheets[tid];
     const ed=sh?sh.editedCells:new Set();
     for(const k of Object.keys(tw)){ if(!ed.has(k)) totalWarn++; }
   }
-  if(iv) iv.textContent=totalWarn;
-  if(ev) ev.textContent=excluded||0;
-  const ir=document.getElementById('navStatIssues');
-  const er=document.getElementById('navStatExcluded');
-  if(ir) ir.style.display=totalWarn>0?'':'none';
-  if(er) er.style.display=excluded>0?'':'none';
-  // Update toolbar alert badge
   const ab=document.getElementById('alertBtnBadge');
   if(ab){ab.textContent=totalWarn>0?totalWarn:'';ab.style.display=totalWarn>0?'flex':'none';}
+  // Update toolbar removed rows badge
+  const rb=document.getElementById('removedBtnBadge');
+  if(rb){rb.textContent=excluded>0?excluded:'';rb.style.display=excluded>0?'flex':'none';}
 }
 
 // ─── DEAD ROW SYSTEM ─────────────────────────────────────────────
 let _deadRowIdx=0;
 
 function updateDeadBanner(){ updateIssuesBar(); }
+
+let _showingRemoved=false;
+function showRemovedRows(){
+  const btn=document.getElementById('removedRowsBtn');
+  if(_showingRemoved){
+    // Toggle off — hide removed rows, go back to current view
+    _showingRemoved=false;
+    if(btn) btn.classList.remove('tb-xl-on');
+    setViewMode(_viewMode);
+    return;
+  }
+  const deadCnt=deadRowActiveCount();
+  if(!deadCnt){showToast('No removed rows');return;}
+  // Switch to a grid tab if not already on one
+  const isGrid=_curTabIdx>=1&&_curTabIdx<=4;
+  if(!isGrid){
+    const tabEl=document.querySelectorAll('.main-tabs .tab')[2];
+    switchTab(2,tabEl);
+  }
+  _showingRemoved=true;
+  if(btn) btn.classList.add('tb-xl-on');
+  setTimeout(()=>{
+    // Show all rows including removed
+    if(_curSheet){
+      _curSheet._rowFilter=null;
+      _curSheet._renderTable();
+    }
+    if(_curSheet&&_curSheet.deadRowStart>=0){
+      _curSheet._scrollToCell(_curSheet.deadRowStart,0);
+    }
+  },isGrid?50:300);
+}
 
 function deadNavNext(){
   const active=DEAD_ROWS.map((d,i)=>({d,i})).filter(x=>x.d.status==='excluded');
@@ -3958,7 +3976,7 @@ function renderToolbar(){
               </div>
               <div class="tb-xl-lbl">Columns</div>
             </button>
-            <button class="tb-xl" id="viewModeBtn" onclick="toggleViewModeMenu(event)" data-tip="Row filter" data-tip-desc="Filter rows: Valid, Needs Attention, or All Rows">
+            <button class="tb-xl" id="viewModeBtn" onclick="toggleViewModeMenu(event)" data-tip="Row filter" data-tip-desc="Filter rows: Valid or Needs Attention">
               <div class="tb-xl-ico" style="position:relative">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M3 5h18M6 12h12M10 19h4" stroke="#2b7cd3" stroke-width="1.8" stroke-linecap="round"/>
@@ -3987,10 +4005,11 @@ function renderToolbar(){
 
       <!-- Group: Alerts -->
       <div class="tb-group" data-grp="alerts">
-        <button class="tb-group-pill" onclick="openAlertPanel()">
+        <button class="tb-group-pill" onclick="showGroupPanel('alerts',this)">
           <div class="tb-group-pill-row">
             <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L1 12h12L7 1.5z" stroke="#b45309" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="5.5" x2="7" y2="8.5" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10" r=".6" fill="#b45309"/></svg>
             <span class="tb-group-pill-lbl">Alerts</span>
+            <svg width="8" height="8" viewBox="0 0 10 10" fill="currentColor" style="color:#888"><path d="M5 7L1 3h8z"/></svg>
           </div>
           <div class="tb-group-pill-sep">Alerts</div>
         </button>
@@ -4005,6 +4024,14 @@ function renderToolbar(){
                 </svg><span id="alertBtnBadge" style="position:absolute;top:-4px;right:-6px;min-width:14px;height:14px;padding:0 3px;border-radius:7px;background:#f59e0b;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1.5px #fff"></span>
               </div>
               <div class="tb-xl-lbl">Alerts</div>
+            </button>
+            <button class="tb-xl" onclick="showRemovedRows()" id="removedRowsBtn" data-tip="Removed Rows" data-tip-desc="Show rows excluded from the submission">
+              <div class="tb-xl-ico" style="position:relative">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4l16 16M21 12A9 9 0 113 12a9 9 0 0118 0z" stroke="#be185d" stroke-width="1.5" stroke-linecap="round"/>
+                </svg><span id="removedBtnBadge" style="position:absolute;top:-4px;right:-6px;min-width:14px;height:14px;padding:0 3px;border-radius:7px;background:#be185d;color:#fff;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1.5px #fff"></span>
+              </div>
+              <div class="tb-xl-lbl">Removed</div>
             </button>
           </div>
           <div class="tb-group-label">Alerts</div>
@@ -4103,8 +4130,8 @@ function _updateToolbarCollapse() {
   const groups = Array.from(row.querySelectorAll('.tb-group'));
   // Reset all first
   groups.forEach(g => g.classList.remove('tb-collapsed'));
-  // Collapse by priority: Table first, then Text, then Rows, then View last
-  const collapseOrder = ['table','text','rows','view'];
+  // Collapse by priority: Table first, then Text, then Rows, then Alerts, then View last
+  const collapseOrder = ['table','text','rows','alerts','view'];
   const byGrp = {};
   groups.forEach(g => { byGrp[g.dataset.grp] = g; });
   for (const grpId of collapseOrder) {
@@ -4715,7 +4742,6 @@ function toggleViewModeMenu(e){
   const opts=[
     {mode:'valid',label:'Valid',desc:'Live rows only',color:'#107c41'},
     {mode:'attention',label:'Needs Attention',desc:'Rows with issues',color:'#f59e0b'},
-    {mode:'all',label:'All Rows',desc:'Including removed',color:'#888'},
   ];
   opts.forEach(o=>{
     const item=document.createElement('div');
@@ -4746,6 +4772,7 @@ function toggleColManager(){
             window._curSheet._renderTable();
             window._curSheet._updatePills();
             _updateColMgrBtn();
+            updateIssuesBar();
           ">
           <span>${col.label}</span>
         </label>`).join('')
@@ -4753,7 +4780,7 @@ function toggleColManager(){
     <div class="col-mgr-footer">
       <button class="btn btn-ghost" style="font-size:11px;padding:2px 6px" onclick="
         window._curSheet.cols.forEach(c=>c.hidden=false);
-        window._curSheet._renderTable();window._curSheet._updatePills();_updateColMgrBtn();
+        window._curSheet._renderTable();window._curSheet._updatePills();_updateColMgrBtn();updateIssuesBar();
         document.getElementById('colMgr').style.display='none'
       ">Show all</button>
       <button class="btn btn-ghost" style="font-size:11px;padding:2px 6px;margin-left:auto" onclick="document.getElementById('colMgr').style.display='none'">Done</button>
@@ -5010,6 +5037,10 @@ function viewWarnSource(ri,docType,colKey){
 
 function setViewMode(mode){
   _viewMode=mode;
+  // Reset removed rows toggle
+  _showingRemoved=false;
+  const rmBtn=document.getElementById('removedRowsBtn');
+  if(rmBtn) rmBtn.classList.remove('tb-xl-on');
   // Update view mode button label + dot
   const lbl=document.getElementById('viewModeLbl');
   if(lbl) lbl.textContent=mode==='valid'?'Valid':mode==='attention'?'Attention':'All Rows';
