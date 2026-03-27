@@ -43,7 +43,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .tbi-default .tbi-val{font-weight:700;color:#2c2c2c}
 .tbi-warn{background:#fef3c7;color:#92400e;border:0.5px solid #fde68a}
 .tbi-warn .tbi-val{font-weight:700}
-.tbi-err{background:#fdf2f8;color:#be185d;border:0.5px solid #fce7f3}
+.tbi-err{background:#f3f4f6;color:#6b7280;border:0.5px solid #e5e7eb}
 .tbi-err .tbi-val{font-weight:700}
 .tb-actions{display:flex;align-items:center;gap:12px}
 .tb-actions-grp{display:flex;align-items:center}
@@ -87,10 +87,9 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .left-panel.lp-collapsed{width:40px!important;min-width:40px!important;overflow:hidden}
 .left-panel.lp-collapsed .lph-row2,.left-panel.lp-collapsed .panel-tabs,.left-panel.lp-collapsed .panel-content,.left-panel.lp-collapsed .lph-title,.left-panel.lp-collapsed .lph-links{display:none}
 .left-panel.lp-expanded{width:75%!important;min-width:75%!important}
-.resizer{width:5px;cursor:col-resize;background:transparent;flex-shrink:0;position:relative;z-index:10;margin:0}
-.resizer::after{content:'';position:absolute;top:0;bottom:0;left:2px;width:1px;background:#e0e0e0;transition:background .15s,width .15s}
-.resizer:hover::after{width:3px;left:1px;background:var(--accent);border-radius:2px}
-.resizer.dragging::after{width:3px;left:1px;background:var(--accent);border-radius:2px}
+.resizer{width:1px;cursor:col-resize;background:#e0e0e0;flex-shrink:0;position:relative;z-index:10;margin:0;transition:background .15s}
+.resizer:hover{background:var(--accent);width:3px;margin:0 -1px}
+.resizer.dragging{background:var(--accent);width:3px;margin:0 -1px}
 .resizer:hover::before{content:'Drag to resize';position:absolute;top:50%;left:10px;transform:translateY(-50%);background:#333;color:#fff;font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:20;pointer-events:none;font-family:'Inter',system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .resizer.dragging::before{display:none}
 .right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
@@ -226,20 +225,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .dead-badge{
   display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:10px;
   font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
-  white-space:nowrap;flex-shrink:0;margin-top:2px;background:#fce7f3;color:#be185d;
+  white-space:nowrap;flex-shrink:0;margin-top:2px;background:#f3f4f6;color:#6b7280;
 }
 .dead-reason-box{
-  background:#fdf2f8;border-left:3px solid #ec4899;
+  background:#f9fafb;border-left:3px solid #d1d5db;
   border-radius:0 6px 6px 0;padding:10px 12px;margin-bottom:16px;
-  font-size:12px;line-height:1.6;color:#831843;
+  font-size:12px;line-height:1.6;color:#374151;
 }
 .dead-values-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;
 }
-.dead-val-card{background:var(--bg-subtle);border:1px solid var(--border);border-radius:6px;padding:8px 10px}
+.dead-val-card{background:#f9fafb;border:1px solid var(--border);border-radius:6px;padding:8px 10px}
 .dead-val-card .dv-label{font-size:10px;color:var(--text-muted);margin-bottom:2px;font-weight:500}
 .dead-val-card .dv-value{font-size:14px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
-.dead-val-card.dv-total{grid-column:1/-1;background:#fef3c7;border-color:#fde68a}
+.dead-val-card.dv-total{grid-column:1/-1;background:#f9fafb;border-color:var(--border);border-width:1.5px}
 .dead-source-info{
   background:var(--bg-subtle);border:1px solid var(--border);
   border-radius:6px;padding:10px;margin-bottom:16px;font-size:11px;
@@ -284,8 +283,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 /* MAP CELL BUTTON */
 .map-cell-btn{display:inline-flex;align-items:center;gap:0;background:none;border:none;border-radius:4px;padding:2px 6px 2px 3px;font-size:11px;font-family:inherit;color:var(--text-muted);cursor:pointer;line-height:1.4;white-space:nowrap;transition:color .15s}
 .map-cell-btn:hover{color:var(--accent)}
-.map-cell-btn.map-low,.map-cell-btn.map-medium,.map-cell-btn.map-high{color:#c2410c}
-.map-cell-btn.map-low:hover,.map-cell-btn.map-medium:hover,.map-cell-btn.map-high:hover{color:#9a3412}
+.map-cell-btn.map-low,.map-cell-btn.map-medium,.map-cell-btn.map-high{color:var(--text-muted)}
+.map-cell-btn.map-low:hover,.map-cell-btn.map-medium:hover,.map-cell-btn.map-high:hover{color:var(--accent)}
 
 /* GRID AREA */
 .right-panel-hdr{display:flex;align-items:center;padding:0 10px;height:30px;border-bottom:1px solid var(--border);background:var(--ribbon-bg);flex-shrink:0}
@@ -345,9 +344,11 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .add-row-btn:hover span{border-color:var(--accent);color:var(--accent)}
 
 /* TOP PANEL HANDLE */
-.top-panel-handle{height:6px;cursor:row-resize;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-bottom:1px solid var(--border);background:var(--bg)}
-.top-panel-handle:hover{background:var(--bg-muted)}
-.tph-grip{width:32px;height:2px;border-radius:1px;background:var(--border-strong)}
+.top-panel-handle{height:1px;cursor:row-resize;background:#e0e0e0;flex-shrink:0;position:relative;z-index:6;margin:0;transition:background .15s}
+.top-panel-handle:hover{background:var(--accent);height:3px;margin:-1px 0}
+.top-panel-handle.dragging{background:var(--accent);height:3px;margin:-1px 0}
+.top-panel-handle:hover::before{content:'Drag to resize';position:absolute;left:50%;top:10px;transform:translateX(-50%);background:#333;color:#fff;font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:20;pointer-events:none;font-family:'Inter',system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.top-panel-handle.dragging::before{display:none}
 #topPanelCollapsible{overflow:hidden;transition:max-height .2s ease;background:var(--ribbon-bg)}
 #topPanelCollapsible.collapsed{max-height:0!important}
 
@@ -376,11 +377,11 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .corner-hdr:hover{background:#d8d8d8}
 
 /* ROWS */
-.row-num{width:32px;min-width:32px;max-width:32px;background:#f2f2f2;color:var(--text-muted);font-size:10px;text-align:center;padding:0;position:sticky;left:0;z-index:5;border:1px solid var(--gridline);cursor:default;user-select:none;overflow:hidden}
+.row-num{width:32px;min-width:32px;max-width:32px;background:#f2f2f2;color:var(--text-muted);font-size:10px;text-align:center;padding:0;position:sticky;left:0;z-index:4;border:1px solid var(--gridline);cursor:default;user-select:none;overflow:hidden;isolation:isolate}
 .row-num[draggable="true"]{cursor:grab}.row-num[draggable="true"]:active{cursor:grabbing}
 .row-num.dragging-row{background:var(--accent-light)!important;opacity:.6}
 .row-drop-indicator{position:absolute;left:0;right:0;height:2px;background:var(--accent);z-index:20;pointer-events:none}
-.row-num-inner{display:flex;align-items:center;justify-content:center;height:100%;gap:2px;padding:0 2px}
+.row-num-inner{display:flex;align-items:center;justify-content:flex-end;height:100%;gap:2px;padding:0 4px 0 2px}
 .row-num:hover{background:#e4e4e4}
 .row-num.row-selected{background:#b8dfc8;color:#0a4a20;border-right-color:#107c41}
 .row-num.row-edited{}
@@ -407,7 +408,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .fs-inp{width:36px;height:22px;border:1px solid #c8c8c8;border-radius:2px;text-align:center;font-size:12px;font-family:inherit;color:var(--text);outline:none;padding:0;background:#fff}
 .fs-inp:focus{border-color:var(--accent);background:#fff}
 .cell:hover:not(.editing){background:#f5f5f5}
-.cell.frozen-cell{position:sticky;z-index:3;background:var(--bg)}
+.cell.frozen-cell{position:sticky;z-index:2;background:var(--bg)}
 .cell.selected{background:var(--sel-fill)!important}
 .cell.anchor-cell{background:#fff!important;outline:2px solid var(--sel-border);outline-offset:-2px;z-index:5}
 .cell.user-edited{position:relative}
@@ -419,8 +420,69 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .cell.inconsistent::after{content:'';position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--warn);pointer-events:none;z-index:2}
 .cell.cf-hit::before{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent var(--cf-dot,#f59e0b) transparent transparent;pointer-events:none;z-index:2}
 .cell.cf-hit.user-edited::before{border-color:#3b82f6 transparent transparent transparent}
-.cell.row-issue-bg{background:#fff8e8!important}
-.cell.row-issue-bg.frozen-cell{background:#fff8e8!important}
+.cell.row-issue-bg{background:var(--bg)!important}
+.cell.row-issue-bg.frozen-cell{background:var(--bg)!important}
+.cell.warn-cell{position:relative}
+.cell.warn-cell.frozen-cell{}
+.cell.warn-cell::after{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent #f59e0b transparent transparent;pointer-events:none;z-index:2}
+.cell.warn-cell.user-edited::after{display:none}
+.cell.warn-cell.cf-hit::before{display:none}
+.rn-warn{display:none}
+.warn-pop{position:fixed;z-index:3000;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12);width:240px;font-family:'Inter',system-ui,sans-serif;font-size:11px}
+.warn-pop-hdr{display:flex;align-items:center;gap:5px;padding:6px 8px 5px}
+.warn-pop-badge{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#92400e;background:#fef3c7;padding:1px 5px;border-radius:3px}
+.warn-pop-close{margin-left:auto;width:16px;height:16px;border:none;background:none;cursor:pointer;color:#bbb;font-size:11px;border-radius:3px;display:flex;align-items:center;justify-content:center;line-height:1}
+.warn-pop-close:hover{background:#f3f4f6;color:#333}
+.warn-pop-body{padding:0 8px 8px}
+.warn-pop-msg{color:#555;line-height:1.4;margin-bottom:6px;font-size:11px}
+.warn-pop-sources{display:flex;flex-direction:column;gap:4px;margin-bottom:6px}
+.warn-pop-src{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;border-radius:4px;border:1px solid #ebebeb;background:#fafafa}
+.warn-pop-src-label{font-size:9px;color:#999;text-transform:uppercase;letter-spacing:.03em;font-weight:600;margin-bottom:3px}
+.warn-pop-src-val{font-weight:500;color:#333;font-size:12px}
+.warn-pop-src-val .diff-hl{background:#fde68a;border-radius:1px;padding:0 1px}
+.warn-pop-src-use{font-size:10px;color:var(--accent);cursor:pointer;font-weight:500;border:none;background:none;padding:1px 4px;border-radius:3px}
+.warn-pop-src-use:hover{background:var(--accent-light)}
+.warn-pop-view{display:inline-flex;align-items:center;gap:3px;font-size:10px;color:var(--accent);cursor:pointer;font-weight:500;border:none;background:none;padding:0;margin-top:2px}
+.warn-pop-view:hover{text-decoration:underline}
+.warn-pop-view+.warn-pop-view{margin-left:8px}
+
+/* ALERT MANAGEMENT PANEL */
+.ap-summary{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-subtle)}
+.ap-summary-count{font-size:20px;font-weight:700;color:var(--text)}
+.ap-summary-label{font-size:12px;color:var(--text-muted)}
+.ap-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:#fff}
+.ap-tab{flex:1;padding:8px 4px;font-size:11px;text-align:center;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-muted);font-weight:500;transition:all .1s}
+.ap-tab:hover{color:var(--text);background:var(--bg-subtle)}
+.ap-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.ap-tab .ap-tab-count{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#f3f4f6;font-size:10px;font-weight:600;color:var(--text-muted);margin-left:4px}
+.ap-tab.active .ap-tab-count{background:var(--accent-light);color:var(--accent)}
+.ap-group{border-bottom:1px solid var(--border)}
+.ap-group-hdr{display:flex;align-items:center;gap:8px;padding:10px 16px;cursor:pointer;user-select:none;background:#fff;transition:background .1s}
+.ap-group-hdr:hover{background:var(--bg-subtle)}
+.ap-group-chevron{font-size:10px;color:#999;transition:transform .15s;flex-shrink:0}
+.ap-group-chevron.collapsed{transform:rotate(-90deg)}
+.ap-group-icon{display:none}
+.ap-group-info{flex:1;min-width:0}
+.ap-group-name{font-size:12px;font-weight:600;color:var(--text)}
+.ap-group-meta{font-size:10px;color:var(--text-muted);margin-top:1px}
+.ap-group-count{font-size:11px;font-weight:600;color:#92400e;background:#fef3c7;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.ap-group-items{overflow:hidden}
+.ap-group-items.collapsed{display:none}
+.ap-item{padding:8px 16px 8px 44px;border-top:1px solid #f5f5f5;transition:background .1s}
+.ap-item:hover{background:#f9fafb}
+.ap-item-top{display:flex;align-items:center;gap:6px;cursor:pointer}
+.ap-item-loc{font-size:11px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ap-item-loc strong{font-weight:600}
+.ap-item-go{display:none}
+.ap-item-bottom{display:flex;align-items:center;gap:4px;margin-top:4px}
+.ap-item-val{font-size:10px;padding:2px 6px;border-radius:3px;background:#f3f4f6;color:var(--text-muted);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.ap-item-use{font-size:9px;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;padding:1px 4px;border-radius:3px;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.ap-item-use:hover{background:var(--accent-light)}
+.ap-bulk-bar{display:flex;align-items:center;gap:8px;padding:8px 16px 10px 44px}
+.ap-bulk-btn{font-size:11px;font-weight:500;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:6px;padding:5px 14px;cursor:pointer;font-family:inherit;transition:all .1s}
+.ap-bulk-btn:hover{background:var(--accent);color:#fff}
+.ap-empty{padding:32px 16px;text-align:center;color:var(--text-muted);font-size:12px}
+
 .cell.has-tooltip:hover{overflow:visible!important;z-index:50}
 .cell-tooltip{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:100;background:#1f2937;color:#fff;font-size:11px;line-height:1.5;padding:8px 12px;border-radius:6px;width:240px;box-shadow:0 4px 12px rgba(0,0,0,.25);pointer-events:none;white-space:normal}
 .cell-tooltip::before{content:'';position:absolute;bottom:100%;left:16px;border:5px solid transparent;border-bottom-color:#1f2937}
@@ -432,7 +494,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .incon-dot{width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0;margin-right:3px}
 .cell-inp{position:absolute;inset:0;border:none;outline:2px solid var(--accent);padding:0 4px;font-size:12px;font-family:inherit;background:#fff;z-index:10;width:100%;height:100%}
 .cell-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--accent)}
-.frozen-panel-line{position:absolute;top:0;width:2px;background:#b8b8b8;pointer-events:none;z-index:50}
+.frozen-panel-line{position:absolute;top:0;width:1px;background:#d4d4d4;pointer-events:none;z-index:50}
 
 /* FILL HANDLE */
 .fill-handle-el{position:fixed;width:7px;height:7px;background:var(--accent);border:1.5px solid #fff;cursor:crosshair;z-index:500;box-shadow:0 0 0 1px var(--accent)}
@@ -507,6 +569,9 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .si-names-toggle:hover{text-decoration:underline}
 .si-names-more{display:none}
 .si-names-more.open{display:block}
+.si-warn-row td{background:#fffbeb!important}
+.si-warn-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#92400e;background:#fef3c7;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:500;white-space:nowrap}
+.si-warn-badge svg{flex-shrink:0}
 .si-name-add{font-size:11px;color:var(--accent);cursor:pointer;margin-top:2px;display:inline-block}
 .si-name-add:hover{text-decoration:underline}
 .si-row-link{cursor:pointer;transition:background .15s}
@@ -534,7 +599,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .ctx-danger{color:#c50f1f}.ctx-danger:hover{background:#fde7e9;color:#c50f1f}
 
 /* TOAST */
-.toast{position:fixed;bottom:20px;right:20px;background:#252525;color:#fff;padding:7px 16px;border-radius:4px;font-size:12px;z-index:5000;opacity:0;transition:opacity .2s;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#252525;color:#fff;padding:7px 16px;border-radius:4px;font-size:12px;z-index:5000;opacity:0;transition:opacity .2s;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .toast.show{opacity:1}
 
 /* ADD LOCATION MODAL */
@@ -636,7 +701,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .doc-dd-ext{font-size:10px;color:var(--text-faint);flex-shrink:0}
 
 /* ── Calculated cell indicator ── */
-.calc-badge{position:absolute;top:2px;right:3px;font-size:8px;font-weight:700;color:#aaa;line-height:1;pointer-events:none;user-select:none}
+.calc-badge{position:absolute;bottom:1px;right:2px;font-size:7px;font-weight:500;font-style:italic;color:#aaa;line-height:1;pointer-events:none;user-select:none}
 
 /* ── Inline calculation breakdown (TIV column) ── */
 .calc-inline{display:flex;flex-direction:column;padding:5px 6px;gap:3px;width:100%;box-sizing:border-box}
@@ -781,6 +846,24 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
         </div>
       </div>
     </div>
+    <div class="sidebar-sep"></div>
+    <div class="sidebar-grp" id="sidebarStats">
+      <div class="nav-stat" id="navStatProps">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1" stroke="currentColor" stroke-width="1.1"/><line x1="1.5" y1="5.5" x2="12.5" y2="5.5" stroke="currentColor" stroke-width="1.1"/><line x1="5" y1="5.5" x2="5" y2="11.5" stroke="currentColor" stroke-width="1.1"/></svg>
+        <span class="ns-val" id="nsPropsVal">17</span>
+        <span class="ns-lbl">properties</span>
+      </div>
+      <div class="nav-stat nav-stat-warn" id="navStatIssues" style="cursor:pointer" onclick="openAlertPanel()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L1 12h12L7 1.5z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="5.5" x2="7" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10" r=".6" fill="currentColor"/></svg>
+        <span class="ns-val" id="nsIssuesVal">0</span>
+        <span class="ns-lbl">warnings</span>
+      </div>
+      <div class="nav-stat nav-stat-err" id="navStatExcluded" style="cursor:pointer" onclick="deadNavNext()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 2.5l9 9M12 7A5 5 0 112 7a5 5 0 0110 0z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        <span class="ns-val" id="nsExclVal">0</span>
+        <span class="ns-lbl">excluded</span>
+      </div>
+    </div>
   </div>
   <div class="sidebar-bottom">
     <button class="sidebar-collapse-btn" onclick="toggleSidebar()">
@@ -885,10 +968,11 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
         <input class="formula-input" id="formulaInput" placeholder="Cell value…">
       </div>
     </div>
+    <div class="top-panel-handle" id="topPanelHandle"></div>
     <div id="issuesBar" style="display:none"></div>
     <div id="filterBarArea"></div>
     <div class="sheet-wrap" id="sheetWrap"></div>
-    <div class="sel-stats" id="selStats"><span style="color:var(--text-faint)">Select cells to see calculation</span><span class="stat-legend"><span class="legend-issue"></span> Issue<span style="margin-left:8px"></span><span class="legend-edited"></span> Edited</span></div>
+    <div class="sel-stats" id="selStats"><span style="color:var(--text-faint)">Select cells to see calculation</span><span class="stat-legend"><span style="width:0;height:0;border-style:solid;border-width:0 6px 6px 0;border-color:transparent #f59e0b transparent transparent;display:inline-block"></span> Warning<span style="margin-left:8px"></span><span class="legend-issue"></span> Inconsistency<span style="margin-left:8px"></span><span class="legend-edited"></span> Edited</span></div>
     <div class="col-pills-wrap" id="colPillsWrap">
       <div class="col-pills" id="colPills"></div>
     </div>
@@ -939,6 +1023,11 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
   <div class="sp-body" id="filterPanelBody"></div>
 </div>
 
+<div class="slide-panel" id="panel-alerts" style="width:440px">
+  <div class="sp-header"><h3>Alerts</h3><span class="sp-close" onclick="closePanel('alerts')">✕</span></div>
+  <div class="sp-body" id="alertPanelBody" style="padding:0"></div>
+</div>
+
 <div class="col-mgr" id="colMgr" style="display:none"></div>
 <div class="toast" id="toast"></div>
 <div class="ctx-menu" id="ctxMenu" style="display:none"></div>
@@ -947,17 +1036,17 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 <script>
 // ─── DATA DEFINITIONS (Morehart Land Co. — real SOV) ──────────────────
 
-const ADDRS=['3521 E Foothill Blvd','3533 E Foothill Blvd','3535 E Foothill Blvd','3537 E Foothill Blvd','3539 E Foothill Blvd','3555 E Foothill Blvd','445 North Rosemead','467 North Rosemead','473 North Rosemead','3545 E Foothill Blvd','29281 A&B Agoura Rd','3299 E Colorado Blvd','3765 Santa Claus Ln','485 N Rosemead','470 N Halstead St','29271 N Aguoura Rd','355 N Rosemead Blvd'];
+const ADDRS=['3521 E Foothill Blvd','3533 E Foothill Blvd','3535 E Foothill Blvd','3537 E Foothill Blvd','3539 E Foothill Blvd','3555 E Foothill Blvd','445 N. Rosernead Blvd','467 North Rosemead','473 North Rosemead','3545 E Foothill Blvd','29281 A&B Agoura Rd','3299 E Colorado Blvd','3765 Santa Claus Ln','485 N Rosemead','470 N Ha|stead St','29271 N Aguoura Rd','355 N Rosemead Blvd'];
 const CITIES=['Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Pasadena','Agoura Hills','Pasadena','Carpinteria','Pasadena','Pasadena','Agoura Hills','Pasadena'];
-const ZIPS=['91107','91107','91107','91107','91107','91107','91107','91107','91107','91107','91301','91107','93013','91107','91107','91301','91107'];
-const BLDG_LIMS=[842461.1,802345,389600.9,603073.9,688164.1,1527103.5,4759040,2003149,961428,5001668,969403,3215505.8,418275,327727.4,1062798.1,1083279.6,5806893];
+const ZIPS=['91107','91107','91107','','91107','91107','91107','91107','91107','91107','91301','91107','93013','91107','91107','91301','91107'];
+const BLDG_LIMS=[842461.1,802345,389600.9,603073.9,688164.1,1527103.5,4759040,1500000,961428,5001668,969403,3215505.8,418275,327727.4,1062798.1,1083279.6,5806893];
 const RV_VALS=[230685,217452,116575,174264,232290,376289,480000,371460,242770,774670,192295,515147,120048,146556,308339,0,1259174];
 const EE_VALS=[60026,0,30196,45038,29370,109137,113722,73115,73767,222738,0,0,0,61575,79823,0,7260];
 const APC_SEL=['Additional','Additional','Additional','Sublimit','Additional','Additional','Additional','Additional','Sublimit','Additional','Additional','Additional','Additional','Sublimit','Sublimit','Additional','Additional'];
-const SQFT=[5460,5200,2525,3862,4460,9898,20000,12983,6018,33669,4362,20843,2250,2124,6888,5334,38000];
-const YEARS=[1961,1962,1965,1965,1965,1958,1969,1975,1976,1957,2001,1983,1960,1996,1979,2001,1968];
+const SQFT=[5460,5200,2525,3862,4460,9898,20000,12983,6018,33669,0,20843,2250,2124,6888,5334,38000];
+const YEARS=[1961,1962,1965,1965,1965,1958,1969,1920,1976,1957,2001,1983,1960,1996,1979,2001,1968];
 const STORIES=[1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1];
-const CON_CODES=['1','1','1','1','1','1','1','7','1','7','1','7','1','1','1','1','7'];
+const CON_CODES=['1','1','1','3','1','1','1','7','1','7','1','7','1','1','1','1','7'];
 const OCC_CODES=['5','47','5','5','47','5','5','5','47','10','47','5','47','47','47','47','10'];
 const PARK_TYPES=['LOT','None','None','None','None','None','None','None','None','None','None','None','None','None','None','None','None'];
 
@@ -978,12 +1067,340 @@ const GEO_ISSUES={
   15:{type:'city_mismatch',short:'City mismatch',priority:'high',detail:'SOV says "Agoura Hills" but geocoder resolved to "Westlake Village". Verify correct city.',action:'Check address'},
 };
 
-// Cell-level data inconsistencies (medium priority — orange dot on specific cells)
-const CELL_ISSUES={
-  '3,3':{priority:'medium',detail:"Inconsistency found for 'Address': SOV reports '3537 E Foothill Boulevard', while extracted data shows '3537 E Foothill Blvd'. Please verify both sources."},
-  '6,4':{priority:'medium',detail:"Inconsistency found for 'City': SOV reports 'North Rosemead', while extracted data shows '445 North Rosemead'. Please verify city name."},
-  '10,3':{priority:'low',detail:"Minor formatting difference: SOV shows 'Agoura Road' vs extracted 'Agoura Rd'. Abbreviation only."},
+// Cell-level data inconsistencies — now handled by TAB_WARNINGS system
+const CELL_ISSUES={};
+
+// ─── ALERT TYPES & PER-TAB WARNINGS ────────────────────────────────
+// 13 alert categories from the product, mapped to demo cells across tabs
+// Key: 'row,col' where col = column index in that tab's column array
+const TAB_WARNINGS={
+  geo:{
+    '3,4':{type:'city_zip_mismatch',detail:'ZIP code in the SOV does not match the ZIP in the ACORD.',
+      sources:[{label:'SOV',value:'91107',doc:'sov'},{label:'ACORD',value:'91106',doc:'acord'}]},
+    '6,1':{type:'address_mismatch',detail:'Extracted address does not match the geocoded address.',
+      sources:[{label:'SOV',value:'445 N. Rosernead Blvd',doc:'sov'},{label:'Geocoder',value:'445 North Rosemead',doc:'sov'}]},
+    '15,2':{type:'city_zip_mismatch',detail:'Geocoded city does not match the city in the SOV.',
+      sources:[{label:'SOV',value:'Agoura Hills',doc:'sov'},{label:'Geocoder',value:'Westlake Village',doc:'sov'}]},
+    '12,5':{type:'coordinate_mismatch',detail:'SOV coordinates differ from geocoded coordinates.',
+      sources:[{label:'SOV',value:'34.3980',doc:'sov'},{label:'Geocoder',value:'34.3977',doc:'sov'}]},
+    '12,6':{type:'coordinate_mismatch',detail:'SOV coordinates differ from geocoded coordinates.',
+      sources:[{label:'SOV',value:'-119.5290',doc:'sov'},{label:'Geocoder',value:'-119.5285',doc:'sov'}]},
+    '9,7':{type:'low_geocode',detail:'Geocoder returned low-confidence location accuracy for this address.',
+      sources:[{label:'Geocoder',value:'APPROXIMATE',doc:'sov'},{label:'SOV',value:'473 North Rosemead',doc:'sov'}]},
+    '9,5':{type:'low_geocode',detail:'Geocoder returned low-confidence coordinates for this address.',
+      sources:[{label:'Geocoder',value:'34.1564 (approx)',doc:'sov'}]},
+    '9,6':{type:'low_geocode',detail:'Geocoder returned low-confidence coordinates for this address.',
+      sources:[{label:'Geocoder',value:'-118.0735 (approx)',doc:'sov'}]},
+    '14,1':{type:'suspicious_text',detail:'Address contains unusual formatting ("|" character) and may be an OCR artefact.',
+      sources:[{label:'SOV',value:'470 N Ha|stead St',doc:'sov'},{label:'ACORD',value:'470 N Halstead St',doc:'acord'}]},
+  },
+  val:{
+    '7,1':{type:'different_numbers',detail:'Building value is reported differently in the SOV and ACORD.',
+      sources:[{label:'SOV',value:'$2,003,149',doc:'sov'},{label:'ACORD',value:'$1,500,000',doc:'acord'}]},
+    '2,15':{type:'different_numbers',detail:'TIV for this property differs between the SOV and the Broker Email.',
+      sources:[{label:'SOV',value:'$536,373',doc:'sov'},{label:'Broker Email',value:'$537,000',doc:'email'}]},
+    '11,11':{type:'different_numbers',detail:'Replacement Value differs between SOV and ACORD.',
+      sources:[{label:'SOV',value:'$515,147',doc:'sov'},{label:'ACORD',value:'$969,403',doc:'acord'}]},
+    '5,15':{type:'manual_review',detail:'TIV is within tolerance but differs slightly across documents.',
+      sources:[{label:'SOV',value:'$2,012,530',doc:'sov'},{label:'Broker Email',value:'$2,013,000',doc:'email'}]},
+  },
+  prim:{
+    '3,1':{type:'conflicting_values',detail:'Construction class differs across documents.',
+      sources:[{label:'SOV',value:'1 — Wood Frame',doc:'sov'},{label:'ACORD',value:'3 — Masonry',doc:'acord'}]},
+    '7,7':{type:'characteristic_inconsistency',detail:'Year built is inconsistent across documents.',
+      sources:[{label:'SOV',value:'1975',doc:'sov'},{label:'ACORD',value:'1920',doc:'acord'}]},
+    '10,6':{type:'characteristic_inconsistency',detail:'Square footage differs between the SOV and the ACORD.',
+      sources:[{label:'SOV',value:'4,362',doc:'sov'},{label:'ACORD',value:'5,200',doc:'acord'}]},
+    '14,0':{type:'suspicious_text',detail:'Address contains unusual formatting and may be an OCR artefact.',
+      sources:[{label:'SOV',value:'470 N Ha|stead St',doc:'sov'},{label:'ACORD',value:'470 N Halstead St',doc:'acord'}]},
+  },
+  sec:{
+    '0,3':{type:'modifier_inconsistency',detail:'Anchoring value differs between the SOV and the ACORD.',
+      sources:[{label:'SOV',value:'Bolted',doc:'sov'},{label:'ACORD',value:'Welded',doc:'acord'}]},
+    '2,2':{type:'modifier_inconsistency',detail:'Flood zone designation differs between the SOV and the ACORD.',
+      sources:[{label:'SOV',value:'Zone X',doc:'sov'},{label:'ACORD',value:'Zone A',doc:'acord'}]},
+    '4,5':{type:'modifier_inconsistency',detail:'Cripple wall status differs between the SOV and the ACORD.',
+      sources:[{label:'SOV',value:'No',doc:'sov'},{label:'ACORD',value:'Yes',doc:'acord'}]},
+    '8,9':{type:'modifier_inconsistency',detail:'Ornamentation value differs between the SOV and the ACORD.',
+      sources:[{label:'SOV',value:'Parapets',doc:'sov'},{label:'ACORD',value:'None',doc:'acord'}]},
+  },
 };
+
+// Helper: get cell warning for current tab (null if user already edited the cell)
+function _getCellWarning(tabId,r,c){
+  const tw=TAB_WARNINGS[tabId];if(!tw) return null;
+  const k=r+','+c;
+  if(_curSheet&&_curSheet.editedCells.has(k)) return null;
+  return tw[k]||null;
+}
+// Helper: does row have any unresolved warning in current tab?
+// A warning is "resolved" if the user has edited that cell
+function _rowHasWarning(tabId,r){
+  const edited=_curSheet?_curSheet.editedCells:null;
+  const tw=TAB_WARNINGS[tabId];
+  if(tw){
+    for(const k of Object.keys(tw)){
+      if(parseInt(k)===r&&!(edited&&edited.has(k))) return true;
+    }
+  }
+  if(tabId==='geo'&&GEO_ISSUES[r]) return true;
+  return false;
+}
+// Collect all warning row indices for a tab (only unresolved)
+function _getWarningRows(tabId){
+  const s=new Set();
+  const edited=_curSheet?_curSheet.editedCells:null;
+  const tw=TAB_WARNINGS[tabId];
+  if(tw) Object.keys(tw).forEach(k=>{
+    if(!(edited&&edited.has(k))) s.add(parseInt(k));
+  });
+  if(tabId==='geo') Object.keys(GEO_ISSUES).forEach(k=>s.add(parseInt(k)));
+  return s;
+}
+
+// ─── WARNING TYPE METADATA (for Alert Management panel) ──────────────
+const WARNING_TYPE_META={
+  city_zip_mismatch:{name:'City / ZIP Mismatch',icon:'📍',bg:'#fef3c7',color:'#92400e'},
+  address_mismatch:{name:'Address Mismatch',icon:'📍',bg:'#fef3c7',color:'#92400e'},
+  coordinate_mismatch:{name:'Coordinate Mismatch',icon:'📍',bg:'#fef3c7',color:'#92400e'},
+  low_geocode:{name:'Low Geocode Confidence',icon:'📍',bg:'#fef3c7',color:'#92400e'},
+  suspicious_text:{name:'Suspicious Text / OCR',icon:'✏️',bg:'#f3e8ff',color:'#6b21a8'},
+  different_numbers:{name:'Different Numbers',icon:'#',bg:'#dbeafe',color:'#1e40af'},
+  manual_review:{name:'Manual Review Needed',icon:'👁',bg:'#f3f4f6',color:'#374151'},
+  conflicting_values:{name:'Conflicting Values',icon:'⚡',bg:'#fee2e2',color:'#991b1b'},
+  characteristic_inconsistency:{name:'Characteristic Inconsistency',icon:'⚡',bg:'#fee2e2',color:'#991b1b'},
+  modifier_inconsistency:{name:'Modifier Inconsistency',icon:'⚡',bg:'#fee2e2',color:'#991b1b'},
+};
+const TAB_DISPLAY_NAMES={geo:'Address & Geolocation',val:'Values',prim:'Primary Risk Factors',sec:'Secondary Risk Factors'};
+
+// Collect all unresolved warnings across all tabs
+function _collectAllWarnings(){
+  const groups={};// keyed by warning type
+  const sheets=window._allSheets||{};
+  for(const [tabId,warnings] of Object.entries(TAB_WARNINGS)){
+    const sheet=sheets[tabId];
+    const edited=sheet?sheet.editedCells:new Set();
+    for(const [key,warn] of Object.entries(warnings)){
+      if(edited.has(key)) continue;// resolved
+      const type=warn.type;
+      if(!groups[type]) groups[type]={type,meta:WARNING_TYPE_META[type]||{name:type,icon:'⚠',bg:'#fef3c7',color:'#92400e'},items:[]};
+      const [r,c]=key.split(',').map(Number);
+      groups[type].items.push({tabId,row:r,col:c,key,warn,addr:ADDRS[r]||('Row '+(r+1))});
+    }
+  }
+  return groups;
+}
+
+let _apFilter='all';// 'all' | tabId
+let _apExpanded={};// type -> bool (groups collapsed by default)
+
+function openAlertPanel(){
+  openPanel('alerts');
+  renderAlertPanel();
+}
+
+// Store alert items for safe onclick referencing (avoids escaping issues with $, quotes, etc.)
+let _apItems=[];
+
+function renderAlertPanel(){
+  const body=document.getElementById('alertPanelBody');
+  if(!body) return;
+  const groups=_collectAllWarnings();
+  const allItems=Object.values(groups).reduce((s,g)=>s+g.items.length,0);
+  _apItems=[];
+
+  let h='';
+  h+=`<div class="ap-summary"><span class="ap-summary-count">${allItems}</span><span class="ap-summary-label">unresolved alert${allItems!==1?'s':''}</span></div>`;
+
+  const sortedTypes=Object.values(groups).sort((a,b)=>b.items.length-a.items.length);
+  let visibleGroups=0;
+  for(const g of sortedTypes){
+    const filtered=_apFilter==='all'?g.items:g.items.filter(it=>it.tabId===_apFilter);
+    if(!filtered.length) continue;
+    visibleGroups++;
+    const expanded=!!_apExpanded[g.type];
+    const m=g.meta;
+    h+=`<div class="ap-group">`;
+    h+=`<div class="ap-group-hdr" onclick="apToggleGroup('${g.type}')">`;
+    h+=`<span class="ap-group-chevron${expanded?'':' collapsed'}">▼</span>`;
+    h+=`<div class="ap-group-info"><div class="ap-group-name">${m.name}</div>`;
+    h+=`<div class="ap-group-meta">${filtered.length} alert${filtered.length!==1?'s':''}</div></div>`;
+    h+=`<span class="ap-group-count">${filtered.length}</span>`;
+    h+=`</div>`;
+
+    h+=`<div class="ap-group-items${expanded?'':' collapsed'}">`;
+    for(const it of filtered){
+      const tabLabel=TAB_DISPLAY_NAMES[it.tabId]||it.tabId;
+      const vals=it.warn.sources||[];
+      const idx=_apItems.length;
+      _apItems.push(it);
+      h+=`<div class="ap-item">`;
+      h+=`<div class="ap-item-top" onclick="navigateToWarning('${it.tabId}',${it.row},${it.col})">`;
+      h+=`<div class="ap-item-loc"><strong>${it.addr}</strong> · <span style="color:var(--text-muted);font-size:10px">${tabLabel}</span></div>`;
+      h+=`<span class="ap-item-go">→</span>`;
+      h+=`</div>`;
+      if(vals.length){
+        h+=`<div class="ap-item-bottom">`;
+        for(let si=0;si<vals.length;si++){
+          h+=`<span class="ap-item-val">${vals[si].value}</span>`;
+          h+=`<button class="ap-item-use" onclick="event.stopPropagation();apResolveItem(${idx},${si})">Use ${vals[si].label}</button>`;
+        }
+        h+=`</div>`;
+      }
+      h+=`</div>`;
+    }
+    // Bulk actions — detect all unique source labels in this group
+    if(filtered.length>1){
+      const srcCounts={};
+      for(const it of filtered){
+        if(!it.warn.sources) continue;
+        for(const s of it.warn.sources) srcCounts[s.label]=(srcCounts[s.label]||0)+1;
+      }
+      const labels=Object.keys(srcCounts).filter(l=>srcCounts[l]>1);
+      if(labels.length){
+        h+=`<div class="ap-bulk-bar">`;
+        for(const lbl of labels) h+=`<button class="ap-bulk-btn" onclick="bulkResolveWarnings('${g.type}','${lbl}','${_apFilter}')">Use all ${lbl} (${srcCounts[lbl]})</button>`;
+        h+=`</div>`;
+      }
+    }
+    h+=`</div>`;
+    h+=`</div>`;
+  }
+  if(visibleGroups===0){
+    h+=`<div class="ap-empty">No unresolved alerts.</div>`;
+  }
+  body.innerHTML=h;
+}
+
+// Resolve single alert by index (safe — no string escaping needed)
+function apResolveItem(itemIdx,sourceIdx){
+  const it=_apItems[itemIdx];
+  if(!it) return;
+  const val=it.warn.sources[sourceIdx]?.value;
+  if(val==null) return;
+  resolveSingleAlert(it.tabId,it.key,val);
+}
+
+function apSetFilter(f){_apFilter=f;renderAlertPanel();}
+function apToggleGroup(type){_apExpanded[type]=!_apExpanded[type];renderAlertPanel();}
+
+function navigateToWarning(tabId,row,col){
+  // Find tab index
+  const tabIdx=TAB_CFG.findIndex(c=>c&&c.id===tabId);
+  if(tabIdx<0) return;
+  // Switch tab if needed
+  if(_curTabIdx!==tabIdx){
+    const tabEl=document.querySelectorAll('.main-tabs .tab')[tabIdx];
+    switchTab(tabIdx,tabEl);
+  }
+  // Wait for render, then scroll to cell and show popover
+  setTimeout(()=>{
+    if(!_curSheet) return;
+    // Make sure row is visible (switch to All or Valid view if filtered out)
+    if(_curSheet._rowFilter&&_curSheet._rowFilter.has(row)){
+      setViewMode('all');
+    }
+    _curSheet._scrollToCell(row,col);
+    // Highlight the cell briefly
+    setTimeout(()=>{
+      const cell=_curSheet._getCellEl(row,col);
+      if(cell){
+        cell.style.outline='2px solid var(--accent)';
+        cell.style.outlineOffset='-1px';
+        setTimeout(()=>{cell.style.outline='';cell.style.outlineOffset='';},2000);
+        // Show warning popover
+        const warn=_getCellWarning(tabId,row,col);
+        if(warn) showWarnPop(cell,warn,row,col);
+      }
+    },100);
+  },50);
+}
+
+function resolveSingleAlert(tabId,key,val){
+  const sheet=_ensureSheet(tabId);
+  if(!sheet) return;
+  const [r,c]=key.split(',').map(Number);
+  const ov=sheet.data[r][c];
+  sheet.data[r][c]=val;
+  sheet.editedCells.add(key);
+  sheet.editedRows.add(r);
+  if(ov!==val) sheet._log(r,c,ov,val);
+  // Resolve all warnings on same row
+  const tw=TAB_WARNINGS[tabId];
+  if(tw) Object.keys(tw).forEach(k=>{ if(parseInt(k)===r) sheet.editedCells.add(k); });
+  if(_curSheet) _curSheet._renderTable();
+  updateIssuesBar();
+  renderAlertPanel();
+  showToast('Alert resolved');
+}
+
+// Ensure a sheet exists for the given tabId (lazy-create if not yet visited)
+function _ensureSheet(tabId){
+  if(_sheets[tabId]) return _sheets[tabId];
+  const cfg=TAB_CFG.find(c=>c&&c.id===tabId);
+  if(!cfg) return null;
+  // Create a detached sheet (not mounted to DOM yet)
+  const tmpDiv=document.createElement('div');
+  tmpDiv.id='xs_tmp_'+tabId;
+  tmpDiv.style.cssText='position:absolute;left:-9999px;top:-9999px;width:800px;height:400px';
+  document.body.appendChild(tmpDiv);
+  _sheets[tabId]=new XSheet(tmpDiv.id,cfg.cols,cfg.makeData());
+  _sheets[tabId].deadRowStart=ADDRS.length;
+  _sheets[tabId]._tmpMount=tmpDiv;
+  if(tabId==='val'){
+    const TIV_KEYS=['bldg_lim','hard','park','apc','cont','soft','stock','edp','ppo','uoib','bi','rv','ee'];
+    _sheets['val'].setAutoCalc('tiv',(row,cols)=>{
+      const sum=TIV_KEYS.reduce((acc,key)=>{
+        const ci=cols.findIndex(c=>c.key===key);
+        if(ci<0)return acc;
+        const v=parseFloat(String(row[ci]||'').replace(/[$,]/g,''));
+        return acc+(isNaN(v)?0:v);
+      },0);
+      return sum?('$'+Math.round(sum).toLocaleString()):'';
+    });
+    _sheets['val'].computeAllAutoCalc();
+  }
+  return _sheets[tabId];
+}
+
+function bulkResolveWarnings(type,sourceLabel,filter){
+  const groups=_collectAllWarnings();
+  const g=groups[type];
+  if(!g) return;
+  const items=filter==='all'?g.items:g.items.filter(it=>it.tabId===filter);
+  let resolved=0;
+  for(const it of items){
+    const sheet=_ensureSheet(it.tabId);
+    if(!sheet) continue;
+    // Find the value from the chosen source
+    let val=null;
+    if(sourceLabel==='first'){
+      val=it.warn.sources&&it.warn.sources[0]?it.warn.sources[0].value:'';
+    } else {
+      const src=it.warn.sources&&it.warn.sources.find(s=>s.label===sourceLabel);
+      if(src) val=src.value;
+    }
+    if(val===null) continue;
+    // Apply value
+    const ov=sheet.data[it.row][it.col];
+    sheet.data[it.row][it.col]=val;
+    sheet.editedCells.add(it.key);
+    sheet.editedRows.add(it.row);
+    if(ov!==val) sheet._log(it.row,it.col,ov,val);
+    // Also resolve all warnings on same row in same tab
+    const tw=TAB_WARNINGS[it.tabId];
+    if(tw){
+      Object.keys(tw).forEach(k=>{
+        if(parseInt(k)===it.row) sheet.editedCells.add(k);
+      });
+    }
+    resolved++;
+  }
+  if(_curSheet) _curSheet._renderTable();
+  updateIssuesBar();
+  renderAlertPanel();
+  showToast(`${resolved} alert${resolved!==1?'s':''} resolved`);
+}
 
 // Data provenance for Values tab (Feature 6)
 // Provenance — shows where each value came from in the SOV
@@ -1126,7 +1543,23 @@ const SEC_COLS=[
 ];
 
 function makeSecData(){
-  const rows=ADDRS.map((a,i)=>[a,'No','Yes - x','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown','Unknown']);
+  const rows=ADDRS.map((a,i)=>[a,'No','Yes - x','','','','','','','','','','','','','','','']);
+  // Some properties have extracted secondary risk data
+  rows[0][3]='Bolted'; rows[0][4]='Stucco'; rows[0][7]='Yes';
+  rows[1][4]='Wood'; rows[1][13]='No';
+  rows[2][2]='Zone X'; rows[2][4]='Stucco'; rows[2][5]='No';
+  rows[3][13]='No'; rows[3][14]='No';
+  rows[4][5]='No'; rows[4][7]='Yes'; rows[4][13]='No';
+  rows[5][4]='Brick'; rows[5][10]='No';
+  rows[6][4]='Stucco';
+  rows[7][6]='No'; rows[7][14]='No';
+  rows[8][9]='Parapets'; rows[8][10]='No';
+  rows[9][4]='Metal'; rows[9][6]='Yes'; rows[9][13]='Yes';
+  rows[10][14]='No';
+  rows[11][4]='EIFS'; rows[11][10]='No'; rows[11][17]='No';
+  rows[13][7]='Yes';
+  rows[14][4]='Stucco';
+  rows[16][4]='Wood'; rows[16][6]='No';
   DEAD_ROWS.forEach((d,i)=>{
     if(d.status!=='excluded') return;
     rows.push([d.addr,'','','','','','','','','','','','','','','','','']);
@@ -1185,6 +1618,7 @@ class XSheet {
     scroll.className='sheet-scroll wrap-'+this.wrapMode;
     scroll.id=this.mountId+'_scroll';
     scroll.tabIndex=0;
+    scroll.style.outline='none';
     this.scrollEl=scroll;
     mount.appendChild(scroll);
     this._renderTable();
@@ -1323,7 +1757,7 @@ class XSheet {
       const rn=document.createElement('td');
       rn.className='row-num';
       rn.dataset.ri=ri;
-      rn.style.cssText=`height:${h}px;position:sticky;left:0;z-index:5;width:32px;min-width:32px;max-width:32px`;
+      rn.style.cssText=`height:${h}px;position:sticky;left:0;z-index:4;width:32px;min-width:32px;max-width:32px`;
       const rni=document.createElement('div');
       rni.className='row-num-inner';
       if(this.groups.hasOwnProperty(ri)){
@@ -1350,7 +1784,15 @@ class XSheet {
       }
       if(this.editedRows.has(ri)) rn.classList.add('row-edited');
       if(isDead) rn.classList.add('dead-row-num');
-      const _hasRowIssue=false;
+      const _tabId=TAB_CFG[_curTabIdx]?.id;
+      const _hasRowIssue=!isDead&&this.hlOn&&_tabId&&_rowHasWarning(_tabId,ri);
+      if(_hasRowIssue){
+        const tw=TAB_WARNINGS[_tabId];
+        const reasons=[];
+        if(tw) Object.keys(tw).forEach(k=>{if(parseInt(k)===ri) reasons.push(tw[k].detail);});
+        if(GEO_ISSUES[ri]) reasons.push(GEO_ISSUES[ri].detail);
+        if(reasons.length) rn.title=reasons.join('\n');
+      }
       rn.addEventListener('contextmenu',e=>{e.preventDefault();this._showRowMenu(e,ri);});
       rn.addEventListener('click',e=>this._selectRow(ri,e));
       tr.appendChild(rn);
@@ -1381,6 +1823,14 @@ class XSheet {
         if(ri===this.anchor.r&&ci===this.anchor.c) td.classList.add('anchor-cell');
         if(this.searchQ&&String(val).toLowerCase().includes(this.searchQ.toLowerCase())) td.classList.add('search-hi');
         if(this.editedCells.has(ri+','+ci)) td.classList.add('user-edited');
+        // Cell-level warning highlight + click to open popover
+        const _cw=!isDead&&this.hlOn&&_tabId?_getCellWarning(_tabId,ri,ci):null;
+        if(_cw){
+          td.classList.add('warn-cell');
+          td.style.cursor='pointer';
+          const _ri=ri,_ci=ci,_warn=_cw;
+          td.addEventListener('dblclick',e=>{e.stopPropagation();showWarnPop(_ri,_ci,_warn,td);});
+        }
         if(isDead) td.classList.add('dead-row-cell');
 
         if(isDead){
@@ -1474,19 +1924,15 @@ class XSheet {
             td.style.position='relative';
             const badge=document.createElement('span');
             badge.className='calc-badge';
-            badge.textContent='!';
+            badge.textContent='fx';
             td.appendChild(badge);
           }
-          // add tooltip for any cell in issue rows
-          if(_hasRowIssue&&!col.frozen){
-            const issue=GEO_ISSUES[ri];
-            if(issue){
-              td.classList.add('has-tooltip');
-              const tip=document.createElement('div');
-              tip.className='cell-tooltip';
-              tip.textContent=issue.detail;
-              td.appendChild(tip);
-            }
+          // add tooltip for geo issue rows (non-warned cells get row-level tooltip)
+          if(_hasRowIssue&&!_cw&&_tabId==='geo'&&GEO_ISSUES[ri]&&!col.frozen&&col.type!=='map'){
+            td.classList.add('has-tooltip');
+            const tip=document.createElement('div');tip.className='cell-tooltip';
+            tip.textContent=GEO_ISSUES[ri].detail;
+            td.appendChild(tip);
           }
         }
 
@@ -1538,7 +1984,7 @@ class XSheet {
   }
 
   _isIncon(r,c){
-    return false; // no hardcoded inconsistencies — use CF rules instead
+    return TAB_CFG[_curTabIdx]?.id==='geo'&&!!CELL_ISSUES[r+','+c];
   }
 
   _getCfStyle(r,c){
@@ -1752,6 +2198,9 @@ class XSheet {
       td.appendChild(inner);
     }
     td.classList.toggle('inconsistent',!!(this.hlOn&&this._isIncon(r,c)));
+    const _tabIdU=TAB_CFG[_curTabIdx]?.id;
+    const wU=this.hlOn&&_tabIdU?_getCellWarning(_tabIdU,r,c):null;
+    td.classList.toggle('warn-cell',!!wU&&!this.editedCells.has(r+','+c));
     const cfHit=this._getCfStyle(r,c);
     td.classList.toggle('cf-hit',!!cfHit);
     if(cfHit) td.style.setProperty('--cf-dot',cfHit.border); else td.style.removeProperty('--cf-dot');
@@ -1766,6 +2215,11 @@ class XSheet {
   _getTd(r,c){
     return this.tbl?.querySelector(`[data-r="${r}"][data-c="${c}"]`)||null;
   }
+  _scrollToCell(r,c){
+    const td=this._getTd(r,c);
+    if(td) td.scrollIntoView({block:'center',inline:'center',behavior:'smooth'});
+  }
+  _getCellEl(r,c){ return this._getTd(r,c); }
 
   // ── Keyboard ──────────────────────────────────────────────────────
 
@@ -2666,6 +3120,7 @@ let _curSheet=null;
 let _sovSel=null,_sovAnchor=null; // SOV selection state
 window._curSheet=null;
 const _sheets={};
+window._allSheets=_sheets;
 let _hlOn=true;
 let _curTabIdx=0;
 let _viewMode='valid'; // 'valid' | 'attention' | 'clean' | 'all'
@@ -2898,7 +3353,7 @@ function updateIssuesBar(){
   const hasGeo=isGeo&&geoKeys.length>0;
   const hasDead=isGrid&&deadCnt>0;
 
-  if(!isGrid){ bar.style.display='none'; updateTopbarIssues(0,0,0,false,false,0); return; }
+  if(!isGrid){ bar.style.display='none'; updateSidebarAttention(ADDRS.length,0,deadCnt); updateTopbarIssues(0,0,0,false,false,0); return; }
 
   bar.className='issues-bar';bar.style.display='';
   let h='';
@@ -2921,18 +3376,7 @@ function updateIssuesBar(){
 
 function updateTopbarIssues(liveRows,geoCount,deadCnt,hasGeo,hasDead,deadTIV){
   const el=document.getElementById('topbarIssues');
-  if(!el) return;
-  const isGrid=_curTabIdx>=1&&_curTabIdx<=5;
-  if(!isGrid){el.innerHTML='';return;}
-  let h=`<span class="tbi-chip tbi-default"><span class="tbi-val">${liveRows}</span> properties</span>`;
-  if(hasGeo){
-    h+=`<span class="tbi-chip tbi-warn" style="cursor:pointer" onclick="geoNavNext()"><span class="tbi-val">${geoCount}</span> issue${geoCount!==1?'s':''}</span>`;
-  }
-  if(hasDead){
-    const fmtTIV='$'+Math.round(deadTIV).toLocaleString();
-    h+=`<span class="tbi-chip tbi-err" style="cursor:pointer" onclick="deadNavNext()"><span class="tbi-val">${deadCnt}</span> excluded · ${fmtTIV}</span>`;
-  }
-  el.innerHTML=h;
+  if(el) el.innerHTML='';
 }
 
 function updateSidebarAttention(props,issues,excluded){
@@ -2940,13 +3384,22 @@ function updateSidebarAttention(props,issues,excluded){
   const iv=document.getElementById('nsIssuesVal');
   const ev=document.getElementById('nsExclVal');
   if(pv) pv.textContent=props||0;
-  if(iv) iv.textContent=issues||0;
+  // Use global total warnings count
+  let totalWarn=0;
+  for(const [tid,tw] of Object.entries(TAB_WARNINGS)){
+    const sh=_sheets[tid];
+    const ed=sh?sh.editedCells:new Set();
+    for(const k of Object.keys(tw)){ if(!ed.has(k)) totalWarn++; }
+  }
+  if(iv) iv.textContent=totalWarn;
   if(ev) ev.textContent=excluded||0;
-  // hide issue/excluded rows if zero
   const ir=document.getElementById('navStatIssues');
   const er=document.getElementById('navStatExcluded');
-  if(ir) ir.style.display=issues>0?'':'none';
+  if(ir) ir.style.display=totalWarn>0?'':'none';
   if(er) er.style.display=excluded>0?'':'none';
+  // Update toolbar alert badge
+  const ab=document.getElementById('alertBtnBadge');
+  if(ab){ab.textContent=totalWarn>0?totalWarn:'';ab.style.display=totalWarn>0?'flex':'none';}
 }
 
 // ─── DEAD ROW SYSTEM ─────────────────────────────────────────────
@@ -3496,14 +3949,14 @@ function renderToolbar(){
         <div class="tb-group-body">
           <div class="tb-group-btns">
             <button class="tb-xl${hiddenCnt>0?' tb-xl-on':''}" onclick="toggleColManager()" id="colMgrBtn" data-tip="Columns" data-tip-desc="Show or hide specific columns">
-              <div class="tb-xl-ico">
+              <div class="tb-xl-ico" style="position:relative">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <rect x="2" y="3" width="5" height="18" rx="1" fill="#cce0ff" stroke="#2b7cd3" stroke-width="1.3"/>
                   <rect x="9.5" y="3" width="5" height="18" rx="1" fill="#e8f2ff" stroke="#2b7cd3" stroke-width="1.3"/>
                   <rect x="17" y="3" width="5" height="18" rx="1" fill="${hiddenCnt>0?'#e3f1ea':'#f5f5f5'}" stroke="${hiddenCnt>0?'#107c41':'#bbb'}" stroke-width="1.3" stroke-dasharray="${hiddenCnt>0?'0':'3 2'}"/>
-                </svg>
+                </svg>${hiddenCnt>0?`<span style="position:absolute;top:-4px;right:-6px;min-width:14px;height:14px;padding:0 3px;border-radius:7px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1.5px #fff">${hiddenCnt}</span>`:''}
               </div>
-              <div class="tb-xl-lbl">${hiddenCnt>0?`Columns·${hiddenCnt}`:'Columns'}</div>
+              <div class="tb-xl-lbl">Columns</div>
             </button>
             <button class="tb-xl" id="viewModeBtn" onclick="toggleViewModeMenu(event)" data-tip="Row filter" data-tip-desc="Filter rows: Valid, Needs Attention, or All Rows">
               <div class="tb-xl-ico" style="position:relative">
@@ -3518,18 +3971,43 @@ function renderToolbar(){
             </button>
             <button class="tb-xl${_curSheet?.isAutoOrganized?' tb-xl-on':''}" id="autoOrgBtn" onclick="_curSheet&&_curSheet.autoOrganizeCols()" data-tip="Auto-organize columns" data-tip-desc="Move filled columns first, empty ones last. Click again to restore original order.">
               <div class="tb-xl-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="6" x2="13" y2="6" stroke="#2b7cd3" stroke-width="1.8" stroke-linecap="round"/>
-                  <line x1="3" y1="12" x2="10" y2="12" stroke="#2b7cd3" stroke-width="1.8" stroke-linecap="round"/>
-                  <line x1="3" y1="18" x2="15" y2="18" stroke="#2b7cd3" stroke-width="1.8" stroke-linecap="round"/>
-                  <path d="M19 4v13" stroke="#555" stroke-width="1.6" stroke-linecap="round"/>
-                  <path d="M15.5 13.5L19 17.5l3.5-4" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="4" height="18" rx="1" fill="#d1d5db" stroke="none"/>
+                  <rect x="10" y="7" width="4" height="14" rx="1" fill="#d1d5db" stroke="none"/>
+                  <rect x="17" y="11" width="4" height="10" rx="1" fill="#d1d5db" stroke="none"/>
+                  <path d="M5 6v0M12 10v0M19 14v0" stroke="#888" stroke-width="1.2"/>
                 </svg>
               </div>
               <div class="tb-xl-lbl">Auto-organize</div>
             </button>
           </div>
           <div class="tb-group-label">View</div>
+        </div>
+      </div>
+
+      <!-- Group: Alerts -->
+      <div class="tb-group" data-grp="alerts">
+        <button class="tb-group-pill" onclick="openAlertPanel()">
+          <div class="tb-group-pill-row">
+            <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L1 12h12L7 1.5z" stroke="#b45309" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="5.5" x2="7" y2="8.5" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10" r=".6" fill="#b45309"/></svg>
+            <span class="tb-group-pill-lbl">Alerts</span>
+          </div>
+          <div class="tb-group-pill-sep">Alerts</div>
+        </button>
+        <div class="tb-group-body">
+          <div class="tb-group-btns">
+            <button class="tb-xl" onclick="openAlertPanel()" data-tip="Alerts" data-tip-desc="View and resolve all warnings across tabs">
+              <div class="tb-xl-ico" style="position:relative">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 20h20L12 2z" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="12" y1="9" x2="12" y2="14" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+                  <circle cx="12" cy="17" r="1" fill="#92400e"/>
+                </svg><span id="alertBtnBadge" style="position:absolute;top:-4px;right:-6px;min-width:14px;height:14px;padding:0 3px;border-radius:7px;background:#f59e0b;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1.5px #fff"></span>
+              </div>
+              <div class="tb-xl-lbl">Alerts</div>
+            </button>
+          </div>
+          <div class="tb-group-label">Alerts</div>
         </div>
       </div>
 
@@ -3743,7 +4221,10 @@ function buildSubInfoForm(){
   // src: comma-separated IDs of email spans to highlight on click
   const v=(label,val,src,num)=>`<tr class="si-row-link" data-src="${src||''}" onclick="flashSrc(this)">
     <td class="si-lbl">${label}</td>
-    <td class="${num?'si-val-num':'si-val'}"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>
+    <td class="${num?'si-val-num':'si-val'}"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>`;
+  const vw=(label,val,src,warn)=>`<tr class="si-row-link si-warn-row" data-src="${src||''}" onclick="flashSrc(this)">
+    <td class="si-lbl">${label}<span class="si-warn-badge"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" fill="#f59e0b" stroke="#92400e" stroke-width=".5"/><text x="8" y="12" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">!</text></svg>${warn}</span></td>
+    <td class="si-val"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>
   </tr>`;
   const sec=(title)=>`<tr class="si-sec"><td colspan="2"><span class="si-pill">${title}</span></td></tr>`;
 
@@ -3757,10 +4238,10 @@ function buildSubInfoForm(){
           ${v('Broker','Britney Benitez','src-broker,src-broker2')}
           ${v('Broker Email','britney.benitez@amwins.com','src-email')}
           ${v('Submission Type','Renewal','src-type,src-type2')}
-          ${v('Need-by Date','2024-07-14','')}
+          ${vw('Need-by Date','','','Missing key field')}
 
           ${sec('Insured Details')}
-          ${v('Named Insured','Morehart Land Co.','src-insured')}
+          ${vw('Named Insured','Morehart Land Co.','src-insured','Suspicious extracted text')}
           ${v('Mailing Address','PO Box 1209','')}
           ${v('City / State / ZIP','Carpinteria, CA 93014','')}
           <tr class="si-row-link" data-src="" onclick="flashSrc(this)">
@@ -4013,6 +4494,35 @@ function switchTab(idx,el){
   document.addEventListener('mouseup',()=>{dragging=false;rz.classList.remove('dragging');document.body.style.cursor='';document.body.style.userSelect='';});
 })();
 
+// ─── TOOLBAR VERTICAL RESIZER ──────────────────────────────────────
+(function(){
+  const handle=document.getElementById('topPanelHandle');
+  const panel=document.getElementById('topPanelCollapsible');
+  if(!handle||!panel) return;
+  let dragging=false,sy=0,sh=0;
+  handle.addEventListener('mousedown',e=>{
+    dragging=true;sy=e.clientY;sh=panel.offsetHeight;
+    panel.style.transition='none';
+    panel.style.maxHeight='none';
+    handle.classList.add('dragging');
+    document.body.style.cursor='row-resize';document.body.style.userSelect='none';
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!dragging) return;
+    const nh=Math.max(0,sh+e.clientY-sy);
+    panel.style.height=nh+'px';
+    panel.style.maxHeight=nh+'px';
+  });
+  document.addEventListener('mouseup',()=>{
+    if(!dragging) return;
+    dragging=false;
+    handle.classList.remove('dragging');
+    panel.style.transition='';
+    document.body.style.cursor='';document.body.style.userSelect='';
+  });
+})();
+
 // ─── PANELS ────────────────────────────────────────────────────────
 
 function openPanel(name){
@@ -4022,6 +4532,7 @@ function openPanel(name){
   if(name==='filter') renderFilterPanel();
   if(name==='changelog'&&_curSheet) _curSheet._updateLogPanel();
   if(name==='condformat') renderCfPanel();
+  if(name==='alerts') renderAlertPanel();
 }
 function closePanel(name){const p=document.getElementById('panel-'+name);if(p)p.classList.remove('open');}
 
@@ -4256,9 +4767,28 @@ function _updateColMgrBtn(){
   const btn=document.getElementById('colMgrBtn');
   if(!btn||!_curSheet) return;
   const hidden=_curSheet.cols.filter(c=>c.hidden).length;
-  btn.classList.toggle('tb-compact-on',hidden>0);
-  const lbl=btn.querySelector('.col-mgr-lbl');
-  if(lbl) lbl.textContent=hidden>0?`Columns · ${hidden} hidden`:'Columns';
+  btn.classList.toggle('tb-xl-on',hidden>0);
+  // Update badge
+  const ico=btn.querySelector('.tb-xl-ico');
+  if(ico){
+    const oldBadge=ico.querySelector('.col-hide-badge');
+    if(oldBadge) oldBadge.remove();
+    if(hidden>0){
+      const b=document.createElement('span');
+      b.className='col-hide-badge';
+      b.style.cssText='position:absolute;top:-4px;right:-6px;min-width:14px;height:14px;padding:0 3px;border-radius:7px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1.5px #fff';
+      b.textContent=hidden;
+      ico.appendChild(b);
+    }
+  }
+  // Update third column icon style
+  const rects=btn.querySelectorAll('svg rect');
+  if(rects.length>=3){
+    const r3=rects[2];
+    r3.setAttribute('fill',hidden>0?'#e3f1ea':'#f5f5f5');
+    r3.setAttribute('stroke',hidden>0?'#107c41':'#bbb');
+    r3.setAttribute('stroke-dasharray',hidden>0?'0':'3 2');
+  }
 }
 
 function toggleHighlight(el){
@@ -4378,6 +4908,104 @@ function dismissProvenance(){
   if(el) el.remove();
 }
 
+// ─── WARNING POPOVER ────────────────────────────────────────────
+function _diffHighlight(vals){
+  if(vals.length!==2) return vals.map(v=>v);
+  const a=vals[0],b=vals[1];
+  if(a===b) return [a,b];
+  // Find common prefix/suffix, highlight the differing middle
+  let pre=0;while(pre<a.length&&pre<b.length&&a[pre]===b[pre]) pre++;
+  let sufA=a.length-1,sufB=b.length-1;
+  while(sufA>pre&&sufB>pre&&a[sufA]===b[sufB]){sufA--;sufB--;}
+  const hA=a.slice(0,pre)+`<span class="diff-hl">`+a.slice(pre,sufA+1)+`</span>`+a.slice(sufA+1);
+  const hB=b.slice(0,pre)+`<span class="diff-hl">`+b.slice(pre,sufB+1)+`</span>`+b.slice(sufB+1);
+  return [hA,hB];
+}
+function showWarnPop(ri,ci,warn,cellEl){
+  dismissWarnPop();
+  const pop=document.createElement('div');
+  pop.id='warnPop';pop.className='warn-pop';
+  const rect=cellEl.getBoundingClientRect();
+  const colKey=_curSheet?.cols[ci]?.key||'';
+  let h=`<div class="warn-pop-hdr"><span class="warn-pop-badge">Warning</span><button class="warn-pop-close" onclick="dismissWarnPop()">✕</button></div>`;
+  h+=`<div class="warn-pop-body">`;
+  h+=`<div class="warn-pop-msg">${warn.detail}</div>`;
+  if(warn.sources&&warn.sources.length){
+    h+=`<div class="warn-pop-sources">`;
+    warn.sources.forEach(s=>{
+      const escaped=s.value.replace(/'/g,"\\'");
+      h+=`<div class="warn-pop-src"><div><div class="warn-pop-src-label">${s.label}</div><div class="warn-pop-src-val">${s.value}</div></div><button class="warn-pop-src-use" onclick="applyWarnValue(${ri},${ci},'${escaped}')">Use this</button></div>`;
+    });
+    h+=`</div>`;
+    const seenDocs=new Set();
+    warn.sources.forEach(s=>{
+      if(s.doc==='sov'||seenDocs.has(s.doc)) return;
+      seenDocs.add(s.doc);
+      const docName=s.doc==='acord'?'ACORD':s.doc==='email'?'Email':s.label;
+      h+=`<button class="warn-pop-view" onclick="viewWarnSource(${ri},'${s.doc}','${colKey}')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3" stroke="currentColor" stroke-width="1.5"/><path d="M9 2h5v5M14 2L7 9" stroke="currentColor" stroke-width="1.5"/></svg>View in ${docName}</button>`;
+    });
+  }
+  h+=`</div>`;
+  pop.innerHTML=h;
+  document.body.appendChild(pop);
+  // Position below cell
+  const pH=pop.offsetHeight;
+  let top=rect.bottom+4,left=rect.left;
+  if(top+pH>window.innerHeight) top=rect.top-pH-4;
+  if(left+300>window.innerWidth) left=window.innerWidth-310;
+  pop.style.top=top+'px';pop.style.left=left+'px';
+  // Dismiss on outside click
+  setTimeout(()=>{
+    const handler=e=>{if(!pop.contains(e.target)&&!cellEl.contains(e.target)){dismissWarnPop();document.removeEventListener('mousedown',handler);}};
+    document.addEventListener('mousedown',handler);
+  },0);
+}
+function dismissWarnPop(){const el=document.getElementById('warnPop');if(el)el.remove();}
+function applyWarnValue(ri,ci,val){
+  if(!_curSheet) return;
+  _curSheet._pushUndo();
+  const ov=_curSheet.data[ri][ci];
+  _curSheet.data[ri][ci]=val;
+  // Always mark as edited to resolve warning (even if same value)
+  _curSheet.editedCells.add(ri+','+ci);
+  _curSheet.editedRows.add(ri);
+  if(ov!==val) _curSheet._log(ri,ci,ov,val);
+  // Resolve ALL warnings in this row
+  const tabId=TAB_CFG[_curTabIdx]?.id;
+  const tw=TAB_WARNINGS[tabId];
+  if(tw){
+    Object.keys(tw).forEach(k=>{
+      if(parseInt(k)===ri) _curSheet.editedCells.add(k);
+    });
+  }
+  _curSheet._renderTable();
+  dismissWarnPop();
+  updateIssuesBar();
+  // Auto-refresh alert panel if open
+  const ap=document.getElementById('panel-alerts');
+  if(ap&&ap.classList.contains('open')) renderAlertPanel();
+  showToast('Warning resolved');
+}
+function viewWarnSource(ri,docType,colKey){
+  dismissWarnPop();
+  if(docType==='acord'){
+    // Switch to ACORD doc and highlight the row
+    _leftDocOverride='acord';
+    const docIdx=LEFT_DOCS.findIndex(d=>d.id==='acord');
+    if(docIdx>=0){_curDocIdx=docIdx;_updateDocSwitcherUI();}
+    renderAcordDoc(ri);
+  } else if(docType==='email'){
+    switchLeftDoc('email');
+  } else {
+    switchLeftDoc('sov');
+    setTimeout(()=>{
+      highlightSovRow(ri);
+      if(colKey) highlightSovCell(ri,colKey);
+      else{const col=_curSheet?.cols[_curSheet?.anchor?.c];if(col) highlightSovCell(ri,col.key);}
+    },100);
+  }
+}
+
 // ─── VIEW MODE (Feature 3) ──────────────────────────────────────
 
 function setViewMode(mode){
@@ -4403,7 +5031,8 @@ function setViewMode(mode){
     _curSheet._rowFilter=hidden.size>0?hidden:null;
   } else {
     // 'attention' = only rows with issues; 'clean' = rows without issues
-    const issueRows=new Set();
+    const tabId=TAB_CFG[_curTabIdx]?.id;
+    const issueRows=tabId?_getWarningRows(tabId):new Set();
     Object.keys(GEO_ISSUES).forEach(k=>issueRows.add(parseInt(k)));
     Object.keys(CELL_ISSUES).forEach(k=>{const r=parseInt(k.split(',')[0]);issueRows.add(r);});
     const hidden=new Set();
@@ -4522,6 +5151,7 @@ function toggleLeftExpand(){
 const LEFT_DOCS=[
   {id:'email',  label:'Email.msg',                           ext:'msg',  color:'#0057b8'},
   {id:'sov',    label:'2024 LAJHA Statement of Values',      ext:'xls',  color:'#107c41'},
+  {id:'acord',  label:'ACORD 140 — Property Schedule',       ext:'pdf',  color:'#c0392b'},
   {id:'bi',     label:'2024 Business Interruption',          ext:'docx', color:'#2b7cd3'},
   {id:'fin',    label:'Audited Financials FYE 8',            ext:'pdf',  color:'#c0392b'},
   {id:'sov2',   label:'2024 LAJHA Statement of Values (2)',  ext:'xls',  color:'#107c41'},
@@ -4601,6 +5231,8 @@ function switchLeftDoc(type){
     renderLeft(0);
   } else if(type==='sov'||type==='sov2'){
     renderLeft(_curTabIdx>0?_curTabIdx:1);
+  } else if(type==='acord'){
+    renderAcordDoc();
   } else {
     // placeholder for other docs
     const pc=document.getElementById('panelContent');
@@ -4615,6 +5247,71 @@ function switchLeftDoc(type){
   }
 }
 
+
+// ─── ACORD DOCUMENT VIEW ────────────────────────────────────────
+function renderAcordDoc(highlightRow){
+  const pc=document.getElementById('panelContent');
+  if(!pc) return;
+  pc.style.padding='0';pc.style.overflowY='auto';
+  const acordData=[
+    {loc:1,addr:'3521 E Foothill Blvd, Pasadena CA 91107',bldg:'$842,461',con:'1',occ:'5',yr:'1961',stories:'1',sqft:'5,460'},
+    {loc:2,addr:'3533 E Foothill Blvd, Pasadena CA 91107',bldg:'$802,345',con:'1',occ:'47',yr:'1962',stories:'1',sqft:'5,200'},
+    {loc:3,addr:'3535 E Foothill Blvd, Pasadena CA 91107',bldg:'$389,601',con:'1',occ:'5',yr:'1965',stories:'1',sqft:'2,525'},
+    {loc:4,addr:'3537 E Foothill Blvd, Pasadena CA 91107',bldg:'$603,074',con:'3',occ:'5',yr:'1965',stories:'1',sqft:'3,862'},
+    {loc:5,addr:'3539 E Foothill Blvd, Pasadena CA 91107',bldg:'$688,164',con:'1',occ:'47',yr:'1965',stories:'1',sqft:'4,460'},
+    {loc:6,addr:'3555 E Foothill Blvd, Pasadena CA 91107',bldg:'$1,527,104',con:'1',occ:'5',yr:'1958',stories:'2',sqft:'9,898'},
+    {loc:7,addr:'445 North Rosemead Blvd, Pasadena CA 91107',bldg:'$4,759,040',con:'1',occ:'5',yr:'1969',stories:'1',sqft:'20,000'},
+    {loc:8,addr:'467 North Rosemead, Pasadena CA 91107',bldg:'$1,500,000',con:'3',occ:'5',yr:'1920',stories:'1',sqft:'12,983'},
+    {loc:9,addr:'473 North Rosemead, Pasadena CA 91107',bldg:'$961,428',con:'1',occ:'47',yr:'1976',stories:'1',sqft:'6,018'},
+    {loc:10,addr:'3545 E Foothill Blvd, Pasadena CA 91107',bldg:'$5,001,668',con:'7',occ:'10',yr:'1957',stories:'1',sqft:'33,669'},
+    {loc:11,addr:'29281 A&B Agoura Rd, Agoura Hills CA 91301',bldg:'$969,403',con:'1',occ:'47',yr:'2001',stories:'1',sqft:'4,362'},
+    {loc:12,addr:'3299 E Colorado Blvd, Pasadena CA 91107',bldg:'$3,215,506',con:'7',occ:'5',yr:'1983',stories:'1',sqft:'20,843'},
+    {loc:13,addr:'3765 Santa Claus Ln, Carpinteria CA 93013',bldg:'$418,275',con:'1',occ:'47',yr:'1960',stories:'2',sqft:'2,250'},
+    {loc:14,addr:'485 N Rosemead, Pasadena CA 91107',bldg:'$327,727',con:'1',occ:'47',yr:'1996',stories:'1',sqft:'2,124'},
+    {loc:15,addr:'470 N Halstead St, Pasadena CA 91107',bldg:'$1,062,798',con:'1',occ:'47',yr:'1979',stories:'1',sqft:'6,888'},
+    {loc:16,addr:'29271 N Agoura Rd, Agoura Hills CA 91301',bldg:'$1,083,280',con:'1',occ:'47',yr:'2001',stories:'1',sqft:'5,334'},
+    {loc:17,addr:'355 N Rosemead Blvd, Pasadena CA 91107',bldg:'$5,806,893',con:'7',occ:'10',yr:'1968',stories:'1',sqft:'38,000'},
+  ];
+  let h=`<div style="padding:12px;font-family:'Courier New',monospace;font-size:11px;background:#fff;min-height:100%">
+    <div style="text-align:center;border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:8px">
+      <div style="font-size:9px;color:#666;letter-spacing:.1em">ACORD</div>
+      <div style="font-size:14px;font-weight:700">COMMERCIAL PROPERTY SCHEDULE</div>
+      <div style="font-size:9px;color:#666">ACORD 140 (2016/03)</div>
+    </div>
+    <div style="display:flex;gap:12px;margin-bottom:8px;font-size:10px">
+      <div><span style="color:#666">Insured:</span> <strong>Morehart Land Co.</strong></div>
+      <div><span style="color:#666">Policy #:</span> DIC-2024-0918</div>
+      <div><span style="color:#666">Eff:</span> 09/18/2024</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:10px">
+      <tr style="background:#e8e8e8">
+        <th style="border:1px solid #999;padding:2px 4px;text-align:center;width:24px">Loc</th>
+        <th style="border:1px solid #999;padding:2px 4px;text-align:left">Address</th>
+        <th style="border:1px solid #999;padding:2px 4px;text-align:right">Bldg Value</th>
+        <th style="border:1px solid #999;padding:2px 4px;text-align:center;width:28px">Con</th>
+        <th style="border:1px solid #999;padding:2px 4px;text-align:center;width:28px">Occ</th>
+        <th style="border:1px solid #999;padding:2px 4px;text-align:center;width:34px">Year</th>
+      </tr>`;
+  acordData.forEach((d,i)=>{
+    const isHl=highlightRow===i;
+    const bg=isHl?'background:#fde68a':'';
+    h+=`<tr data-acord="${i}" style="${bg}">
+      <td style="border:1px solid #ccc;padding:2px 4px;text-align:center;font-size:9px">${d.loc}</td>
+      <td style="border:1px solid #ccc;padding:2px 4px;font-size:9px">${d.addr}</td>
+      <td style="border:1px solid #ccc;padding:2px 4px;text-align:right;font-size:9px">${d.bldg}</td>
+      <td style="border:1px solid #ccc;padding:2px 4px;text-align:center;font-size:9px">${d.con}</td>
+      <td style="border:1px solid #ccc;padding:2px 4px;text-align:center;font-size:9px">${d.occ}</td>
+      <td style="border:1px solid #ccc;padding:2px 4px;text-align:center;font-size:9px">${d.yr}</td>
+    </tr>`;
+  });
+  h+=`</table></div>`;
+  pc.innerHTML=h;
+  // Scroll to highlighted row
+  if(highlightRow!==undefined){
+    const hlRow=pc.querySelector(`tr[data-acord="${highlightRow}"]`);
+    if(hlRow) setTimeout(()=>hlRow.scrollIntoView({block:'center',behavior:'smooth'}),50);
+  }
+}
 
 // ─── PROPERTY COUNT (Feature #7) ──────────────────────────────────
 // Enhances updateIssuesBar with property/row count summary
