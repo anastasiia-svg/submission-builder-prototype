@@ -597,6 +597,74 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:13px;co
 .si-mismatch-warn:hover{text-decoration:underline}
 .si-footer{padding:14px 20px;display:flex;justify-content:flex-end;border-top:1px solid var(--border);background:var(--bg)}
 
+/* SOV SETUP CARD */
+.sov-setup{background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:640px;margin-bottom:12px}
+.sov-setup-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--bg-subtle)}
+.sov-setup-title{font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px}
+.sov-setup-body{padding:14px 20px;display:flex;flex-direction:column;gap:8px}
+.sov-file-row{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:border-color .12s,background .12s;user-select:none}
+.sov-file-row.selected{border-color:var(--accent);background:var(--accent-light)}
+.sov-file-row input[type=radio]{accent-color:var(--accent);margin-top:2px;flex-shrink:0}
+.sov-file-icon{font-size:15px;line-height:1;flex-shrink:0;margin-top:1px}
+.sov-file-info{flex:1;min-width:0}
+.sov-file-name{font-size:12px;font-weight:500;color:var(--text)}
+.sov-file-meta{font-size:11px;color:var(--text-faint);margin-top:1px}
+.sov-tab-row{display:flex;align-items:center;gap:6px;margin-top:6px}
+.sov-tab-lbl{font-size:11px;color:var(--text-muted)}
+.sov-tab-sel{font-size:11px;padding:2px 6px;border:1px solid var(--border-strong);border-radius:4px;background:#fff;color:var(--text);outline:none;cursor:pointer}
+.sov-tab-sel:focus{border-color:var(--accent)}
+.sov-setup-footer{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);background:var(--bg-subtle)}
+.sov-confirmed-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#16a34a;font-weight:500}
+/* CHECK GROUPS */
+.si-checks{background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:640px;margin-bottom:12px}
+.si-checks-hdr{padding:8px 16px;border-bottom:1px solid var(--border);background:var(--bg-subtle);font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
+.si-cg-row{border-bottom:1px solid var(--border)}
+.si-cg-row:last-child{border-bottom:none}
+.si-cg-top{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;transition:background .12s}
+.si-cg-top:hover{background:var(--bg-subtle)}
+.si-cg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.si-cg-dot.ok{background:#16a34a}.si-cg-dot.warn{background:#f59e0b}.si-cg-dot.error{background:#ef4444}
+.si-cg-name{flex:1;font-size:12px;font-weight:500;color:var(--text)}
+.si-cg-badge{font-size:10px;font-weight:600;padding:1px 8px;border-radius:10px;white-space:nowrap}
+.si-cg-badge.ok{background:#dcfce7;color:#15803d}.si-cg-badge.warn{background:#fef3c7;color:#92400e}.si-cg-badge.error{background:#fee2e2;color:#991b1b}
+.si-cg-chevron{font-size:9px;color:var(--text-faint);transition:transform .15s;display:inline-block}
+.si-cg-chevron.open{transform:rotate(90deg)}
+.si-cg-body{display:none;border-top:1px solid var(--border);background:var(--bg-subtle)}
+.si-cg-body.open{display:block}
+.si-cg-issue{display:flex;align-items:flex-start;gap:8px;padding:9px 16px;border-bottom:1px solid var(--border)}
+.si-cg-issue:last-child{border-bottom:none}
+.si-cg-issue-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.si-cg-issue-dot.warn{background:#f59e0b}.si-cg-issue-dot.error{background:#ef4444}
+.si-cg-issue-body{flex:1;min-width:0}
+.si-cg-issue-field{font-size:11px;font-weight:600;color:var(--text);margin-bottom:2px}
+.si-cg-issue-desc{font-size:11px;color:var(--text-muted);line-height:1.4}
+.si-cg-issue-actions{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;align-items:center}
+.si-cg-act{font-size:10px;font-weight:500;padding:3px 9px;border-radius:4px;border:1px solid;cursor:pointer;transition:all .1s;font-family:inherit;line-height:1.4}
+.si-cg-act.use{background:#fff;border-color:var(--accent);color:var(--accent)}
+.si-cg-act.use:hover{background:var(--accent-light)}
+.si-cg-act.dismiss{background:none;border-color:var(--border-strong);color:var(--text-muted)}
+.si-cg-act.dismiss:hover{background:var(--bg-muted)}
+.si-cg-resolved{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#16a34a;font-weight:500;margin-top:6px;padding:2px 0}
+/* INLINE RESOLUTION PANEL */
+.si-resolve{margin-top:6px;background:#fff;border:1px solid var(--border-strong);border-radius:6px;overflow:hidden;font-size:11px}
+.si-resolve-srcs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.si-resolve-src{padding:7px 10px}
+.si-resolve-src+.si-resolve-src{border-left:1px solid var(--border)}
+.si-resolve-src-lbl{font-size:10px;color:var(--text-faint);margin-bottom:2px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.si-resolve-src-val{font-weight:500;color:var(--text);font-size:12px}
+.si-resolve-acts{display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--bg-subtle)}
+.si-resolve-act{font-size:11px;font-weight:500;padding:3px 10px;border-radius:4px;border:1px solid;cursor:pointer;transition:all .1s;font-family:inherit;line-height:1.4}
+.si-resolve-act.use{background:#fff;border-color:var(--accent);color:var(--accent)}
+.si-resolve-act.use:hover{background:var(--accent-light)}
+.si-resolve-act.dismiss{background:none;border-color:transparent;color:var(--text-faint)}
+.si-resolve-act.dismiss:hover{color:var(--text-muted)}
+.si-resolve-resolved{font-size:11px;color:#16a34a;font-weight:500;padding:6px 10px;background:var(--bg-subtle);display:flex;align-items:center;gap:4px}
+.si-miss-row{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg-subtle);margin-top:6px;border:1px solid var(--border);border-radius:5px;font-size:11px}
+/* TIV PAIR */
+.si-tiv-calc-row{display:flex;align-items:center;gap:6px}
+.si-tiv-calc-badge{font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;flex-shrink:0}
+.si-tiv-diff{font-size:10px;color:#92400e;background:#fef3c7;padding:2px 7px;border-radius:3px;margin-top:4px;display:inline-block}
+
 /* FILTER BAR */
 .filter-bar{padding:5px 10px;background:var(--warn-bg);border-bottom:1px solid #fde68a;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:11px;flex-shrink:0}
 .filter-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#fff;border:1px solid var(--warn);border-radius:10px;color:var(--warn)}
@@ -4215,6 +4283,267 @@ const ADD_INSUREDS=[
   'MLC',
 ];
 
+// ─── SUBMISSION INFO — STATE & DATA ─────────────────────────────────
+let _sovSetupDone=false;
+let _sovSelectedFile=0;
+let _sovSelectedTab='Locations';
+const _resolvedAlerts=new Set();
+
+const SI_ALERTS={
+  insured:[
+    {id:'insured_name',field:'Named Insured',priority:'warn',
+     desc:'Extracted name differs from ACORD — confirm legal entity name',
+     sources:[{label:'SOV',value:'Morehart Land Co.'},{label:'ACORD',value:'Morehart Land Company LLC'}]}
+  ],
+  broker:[
+    {id:'broker_email',field:'Broker Email',priority:'warn',
+     desc:'Email extracted with low OCR confidence — verify correct address',
+     sources:[{label:'Extracted',value:'britney.benitez@amwins.com'},{label:'ACORD',value:'b.benitez@amwins.com'}]}
+  ],
+  policy:[
+    {id:'needby_date',field:'Need-by Date',priority:'error',
+     desc:'Required field — not found in any submitted document',
+     sources:[]}
+  ]
+};
+
+function buildSovSetupCard(){
+  if(_sovSetupDone){
+    return `<div class="sov-setup" id="sovSetupCard">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px">
+        <div class="sov-setup-title">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="1" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2"/><rect x="4" y="4" width="8" height="1.5" rx=".5" fill="#94a3b8"/><rect x="4" y="7" width="5" height="1.5" rx=".5" fill="#94a3b8"/></svg>
+          Source Documents
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <span style="font-size:12px;color:var(--text-muted)">Primary: <strong>Morehart_SOV_2024.xlsx</strong> · Tab: <strong>${_sovSelectedTab}</strong></span>
+          <span class="sov-confirmed-badge">✓ Confirmed</span>
+          <span style="font-size:11px;color:var(--accent);cursor:pointer;font-weight:500" onclick="_sovSetupDone=false;const w=document.getElementById('sheetWrap');if(w)w.innerHTML=buildSubInfoForm()">Change</span>
+        </div>
+      </div>
+    </div>`;
+  }
+  return `<div class="sov-setup" id="sovSetupCard">
+    <div class="sov-setup-hdr">
+      <div class="sov-setup-title">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="1" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2"/><rect x="4" y="4" width="8" height="1.5" rx=".5" fill="#94a3b8"/><rect x="4" y="7" width="5" height="1.5" rx=".5" fill="#94a3b8"/></svg>
+        Source Documents
+      </div>
+      <span style="font-size:10px;color:var(--text-faint)">2 files detected — select primary SOV</span>
+    </div>
+    <div class="sov-setup-body">
+      <div class="sov-file-row${_sovSelectedFile===0?' selected':''}" id="sovFileRow0" onclick="selectSovFile(0)">
+        <input type="radio" name="sovFile" value="0"${_sovSelectedFile===0?' checked':''}>
+        <span class="sov-file-icon">📗</span>
+        <div class="sov-file-info">
+          <div class="sov-file-name">Morehart_SOV_2024.xlsx</div>
+          <div class="sov-file-meta">Excel · 17 properties · uploaded Aug 14, 2024</div>
+          <div class="sov-tab-row" id="sovTabRow" style="${_sovSelectedFile===0?'':'display:none'}">
+            <span class="sov-tab-lbl">Sheet:</span>
+            <select class="sov-tab-sel" id="sovTabSel" onclick="event.stopPropagation()" onchange="_sovSelectedTab=this.value">
+              <option${_sovSelectedTab==='Locations'?' selected':''}>Locations</option>
+              <option${_sovSelectedTab==='Summary'?' selected':''}>Summary</option>
+              <option${_sovSelectedTab==='COPE Data'?' selected':''}>COPE Data</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="sov-file-row${_sovSelectedFile===1?' selected':''}" id="sovFileRow1" onclick="selectSovFile(1)">
+        <input type="radio" name="sovFile" value="1"${_sovSelectedFile===1?' checked':''}>
+        <span class="sov-file-icon">📗</span>
+        <div class="sov-file-info">
+          <div class="sov-file-name">Morehart_Alt_SOV.xlsx</div>
+          <div class="sov-file-meta">Excel · 12 properties · uploaded Aug 14, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="sov-setup-footer">
+      <span style="font-size:11px;color:var(--text-faint)">Supporting: ACORD 140 · Broker Email</span>
+      <button class="btn btn-solid" style="padding:5px 14px;font-size:12px" onclick="confirmSovSetup()">Confirm selection →</button>
+    </div>
+  </div>`;
+}
+
+function selectSovFile(idx){
+  _sovSelectedFile=idx;
+  [0,1].forEach(i=>{
+    const row=document.getElementById('sovFileRow'+i);
+    if(!row) return;
+    row.classList.toggle('selected',i===idx);
+    const radio=row.querySelector('input[type=radio]');
+    if(radio) radio.checked=(i===idx);
+  });
+  const tabRow=document.getElementById('sovTabRow');
+  if(tabRow) tabRow.style.display=idx===0?'':'none';
+}
+
+function confirmSovSetup(){
+  const sel=document.getElementById('sovTabSel');
+  if(sel) _sovSelectedTab=sel.value;
+  _sovSetupDone=true;
+  const card=document.getElementById('sovSetupCard');
+  if(!card) return;
+  card.outerHTML=`<div class="sov-setup" id="sovSetupCard">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px">
+      <div class="sov-setup-title">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="1" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2"/><rect x="4" y="4" width="8" height="1.5" rx=".5" fill="#94a3b8"/><rect x="4" y="7" width="5" height="1.5" rx=".5" fill="#94a3b8"/></svg>
+        Source Documents
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="font-size:12px;color:var(--text-muted)">Primary: <strong>Morehart_SOV_2024.xlsx</strong> · Tab: <strong>${_sovSelectedTab}</strong></span>
+        <span class="sov-confirmed-badge">✓ Confirmed</span>
+        <span style="font-size:11px;color:var(--accent);cursor:pointer;font-weight:500" onclick="_sovSetupDone=false;const w=document.getElementById('sheetWrap');if(w)w.innerHTML=buildSubInfoForm()">Change</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildCheckGroups(){
+  const groups=[
+    {id:'insured',label:'Named Insured — name & mailing address',alerts:SI_ALERTS.insured},
+    {id:'broker',label:'Broker Verification',alerts:SI_ALERTS.broker},
+    {id:'policy',label:'Policy Details Verification',alerts:SI_ALERTS.policy}
+  ];
+  let html=`<div class="si-checks"><div class="si-checks-hdr">Submission Checks</div>`;
+  groups.forEach(g=>{
+    const unresolved=g.alerts.filter(a=>!_resolvedAlerts.has(a.id));
+    const hasError=unresolved.some(a=>a.priority==='error');
+    const status=unresolved.length===0?'ok':hasError?'error':'warn';
+    const badgeText=unresolved.length===0?'All clear':unresolved.length+' issue'+(unresolved.length>1?'s':'');
+    const isOpen=unresolved.length>0;
+    html+=`<div class="si-cg-row">
+      <div class="si-cg-top" onclick="toggleCheckGroup('${g.id}')">
+        <div class="si-cg-dot ${status}" id="cgDot_${g.id}"></div>
+        <span class="si-cg-name">${g.label}</span>
+        <span class="si-cg-badge ${status}" id="cgBadge_${g.id}">${badgeText}</span>
+        <span class="si-cg-chevron${isOpen?' open':''}" id="cgChevron_${g.id}">▶</span>
+      </div>
+      <div class="si-cg-body${isOpen?' open':''}" id="cgBody_${g.id}">`;
+    g.alerts.forEach(alert=>{
+      html+=`<div class="si-cg-issue" id="siAlert_${alert.id}">
+        <div class="si-cg-issue-dot ${alert.priority}"></div>
+        <div class="si-cg-issue-body">
+          <div class="si-cg-issue-field">${alert.field}</div>
+          <div class="si-cg-issue-desc">${alert.desc}</div>`;
+      if(_resolvedAlerts.has(alert.id)){
+        html+=`<div class="si-cg-resolved">✓ Resolved</div>`;
+      } else if(alert.sources.length>=2){
+        html+=`<div class="si-cg-issue-actions">`;
+        alert.sources.forEach(s=>{
+          html+=`<button class="si-cg-act use" onclick="resolveAlertFromGroup('${alert.id}','use','${s.value.replace(/'/g,"\\'")}')">${s.label}: "${s.value}"</button>`;
+        });
+        html+=`<button class="si-cg-act dismiss" onclick="resolveAlertFromGroup('${alert.id}','dismiss','')">Dismiss</button></div>`;
+      } else {
+        html+=`<div class="si-cg-issue-actions"><button class="si-cg-act dismiss" onclick="resolveAlertFromGroup('${alert.id}','dismiss','')">Mark as reviewed</button></div>`;
+      }
+      html+=`</div></div>`;
+    });
+    html+=`</div></div>`;
+  });
+  return html+'</div>';
+}
+
+function toggleCheckGroup(id){
+  const body=document.getElementById('cgBody_'+id);
+  const chevron=document.getElementById('cgChevron_'+id);
+  if(!body) return;
+  const open=body.classList.toggle('open');
+  if(chevron) chevron.classList.toggle('open',open);
+}
+
+function resolveAlertFromGroup(alertId,action,value){
+  _resolvedAlerts.add(alertId);
+  // Apply value to the form field if "Use" action
+  const fieldMap={insured_name:'fieldNamedInsured',broker_email:'fieldBrokerEmail'};
+  const fieldId=fieldMap[alertId];
+  if(action==='use'&&fieldId){
+    const field=document.getElementById(fieldId);
+    if(field){
+      const row=field.closest('tr');
+      const lbl=row?row.querySelector('.si-lbl'):null;
+      const oldVal=field.textContent.trim();
+      field.textContent=value;
+      if(lbl) logFormChange(lbl.firstChild.textContent.trim(),oldVal,value);
+    }
+  }
+  // Update inline form resolution panel
+  _syncResolvedToFormRow(alertId,action,value);
+  // Update check group issue entry
+  const cgIssue=document.getElementById('siAlert_'+alertId);
+  if(cgIssue){
+    const actions=cgIssue.querySelector('.si-cg-issue-actions');
+    if(actions) actions.remove();
+    const resolved=document.createElement('div');
+    resolved.className='si-cg-resolved';
+    resolved.textContent='✓ '+(action==='use'?`Applied: "${value}"`:'Dismissed');
+    cgIssue.querySelector('.si-cg-issue-body').appendChild(resolved);
+  }
+  updateCheckGroupStatus();
+}
+
+function resolveFieldAlert(alertId,action,value,fieldId){
+  _resolvedAlerts.add(alertId);
+  if(action==='use'&&fieldId){
+    const field=document.getElementById(fieldId);
+    if(field){
+      const row=field.closest('tr');
+      const lbl=row?row.querySelector('.si-lbl'):null;
+      const oldVal=field.textContent.trim();
+      field.textContent=value;
+      if(lbl) logFormChange(lbl.firstChild.textContent.trim(),oldVal,value);
+    }
+  }
+  _syncResolvedToFormRow(alertId,action,value);
+  // Update check group issue entry
+  const cgIssue=document.getElementById('siAlert_'+alertId);
+  if(cgIssue){
+    const actions=cgIssue.querySelector('.si-cg-issue-actions');
+    if(actions) actions.remove();
+    const resolved=document.createElement('div');
+    resolved.className='si-cg-resolved';
+    resolved.textContent='✓ '+(action==='use'?`Applied: "${value}"`:'Dismissed');
+    cgIssue.querySelector('.si-cg-issue-body').appendChild(resolved);
+  }
+  updateCheckGroupStatus();
+}
+
+function _syncResolvedToFormRow(alertId,action,value){
+  const panel=document.getElementById('resolvePanel_'+alertId);
+  if(!panel) return;
+  const row=panel.closest('tr');
+  if(row){
+    row.classList.remove('si-warn-row');
+    const badge=row.querySelector('.si-warn-badge');
+    if(badge) badge.remove();
+    const lbl=row.querySelector('.si-lbl');
+    if(lbl&&!lbl.querySelector('.si-resolved-check')){
+      const check=document.createElement('span');
+      check.className='si-resolved-check';
+      check.style.cssText='font-size:10px;color:#16a34a;font-weight:500;margin-left:6px';
+      check.textContent='✓';
+      lbl.appendChild(check);
+    }
+  }
+  panel.outerHTML=`<div style="font-size:10px;color:#16a34a;margin-top:4px;font-weight:500">✓ ${action==='use'?`Applied: "${value}"`:'Dismissed'}</div>`;
+}
+
+function updateCheckGroupStatus(){
+  [{id:'insured',alerts:SI_ALERTS.insured},{id:'broker',alerts:SI_ALERTS.broker},{id:'policy',alerts:SI_ALERTS.policy}]
+  .forEach(g=>{
+    const unresolved=g.alerts.filter(a=>!_resolvedAlerts.has(a.id));
+    const hasError=unresolved.some(a=>a.priority==='error');
+    const status=unresolved.length===0?'ok':hasError?'error':'warn';
+    const badgeText=unresolved.length===0?'All clear':unresolved.length+' issue'+(unresolved.length>1?'s':'');
+    const dot=document.getElementById('cgDot_'+g.id);
+    const badge=document.getElementById('cgBadge_'+g.id);
+    const chevron=document.getElementById('cgChevron_'+g.id);
+    const body=document.getElementById('cgBody_'+g.id);
+    if(dot){dot.className='si-cg-dot '+status;}
+    if(badge){badge.className='si-cg-badge '+status;badge.textContent=badgeText;}
+    if(unresolved.length===0&&body&&chevron){body.classList.remove('open');chevron.classList.remove('open');}
+  });
+}
+
 function nameRow(n){
   return `<div class="si-name-row"><span class="si-name-ed" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${n}</span><button class="si-name-rm" title="Remove" onclick="this.parentElement.remove();subAutoSave(this)">×</button></div>`;
 }
@@ -4245,17 +4574,60 @@ function addInsuredName(){
 }
 
 function buildSubInfoForm(){
-  // src: comma-separated IDs of email spans to highlight on click
   const v=(label,val,src,num)=>`<tr class="si-row-link" data-src="${src||''}" onclick="flashSrc(this)">
     <td class="si-lbl">${label}</td>
-    <td class="${num?'si-val-num':'si-val'}"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>`;
-  const vw=(label,val,src,warn)=>`<tr class="si-row-link si-warn-row" data-src="${src||''}" onclick="flashSrc(this)">
-    <td class="si-lbl">${label}<span class="si-warn-badge"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" fill="#f59e0b" stroke="#92400e" stroke-width=".5"/><text x="8" y="12" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">!</text></svg>${warn}</span></td>
-    <td class="si-val"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>
+    <td class="${num?'si-val-num':'si-val'}"><span class="si-val-edit${val?'':' empty'}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>
   </tr>`;
   const sec=(title)=>`<tr class="si-sec"><td colspan="2"><span class="si-pill">${title}</span></td></tr>`;
 
+  // Warning row with inline resolution panel (conflict between sources)
+  const vwx=(label,val,src,alertId,sources,fieldId)=>{
+    const resolved=_resolvedAlerts.has(alertId);
+    if(resolved){
+      return `<tr class="si-row-link" data-src="${src||''}" onclick="flashSrc(this)">
+        <td class="si-lbl">${label}<span class="si-resolved-check" style="font-size:10px;color:#16a34a;font-weight:500;margin-left:6px">✓</span></td>
+        <td class="si-val"><span class="si-val-edit${val?'':' empty'}" id="${fieldId||''}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span></td>
+      </tr>`;
+    }
+    const resolveHtml=sources.length>=2?`<div class="si-resolve" id="resolvePanel_${alertId}">
+      <div class="si-resolve-srcs">
+        ${sources.map(s=>`<div class="si-resolve-src"><div class="si-resolve-src-lbl">${s.label}</div><div class="si-resolve-src-val">${s.value}</div></div>`).join('')}
+      </div>
+      <div class="si-resolve-acts">
+        ${sources.map(s=>`<button class="si-resolve-act use" onclick="event.stopPropagation();resolveFieldAlert('${alertId}','use','${s.value.replace(/'/g,"\\'")}','${fieldId||''}')">Use ${s.label}</button>`).join('')}
+        <button class="si-resolve-act dismiss" onclick="event.stopPropagation();resolveFieldAlert('${alertId}','dismiss','','')">Dismiss</button>
+      </div>
+    </div>`:'';
+    return `<tr class="si-row-link si-warn-row" data-src="${src||''}" onclick="flashSrc(this)">
+      <td class="si-lbl">${label}<span class="si-warn-badge"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" fill="#f59e0b" stroke="#92400e" stroke-width=".5"/><text x="8" y="12" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">!</text></svg></span></td>
+      <td class="si-val"><span class="si-val-edit${val?'':' empty'}" id="${fieldId||''}" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">${val||'—'}</span>${resolveHtml}</td>
+    </tr>`;
+  };
+
+  // Missing field row (required, not extracted)
+  const vmiss=(label,alertId)=>{
+    const resolved=_resolvedAlerts.has(alertId);
+    if(resolved){
+      return `<tr class="si-row-link" data-src="">
+        <td class="si-lbl">${label}<span class="si-resolved-check" style="font-size:10px;color:#16a34a;font-weight:500;margin-left:6px">✓ Reviewed</span></td>
+        <td class="si-val"><span class="si-val-edit empty" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">—</span></td>
+      </tr>`;
+    }
+    return `<tr class="si-warn-row">
+      <td class="si-lbl">${label}<span class="si-warn-badge" style="background:#fee2e2;color:#991b1b"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1L1 14h14L8 1z" fill="#ef4444" stroke="#991b1b" stroke-width=".5"/><text x="8" y="12" text-anchor="middle" font-size="9" font-weight="700" fill="#991b1b">!</text></svg> Missing</span></td>
+      <td class="si-val">
+        <span class="si-val-edit empty" contenteditable="true" spellcheck="false" oninput="subAutoSave(this)">—</span>
+        <div class="si-miss-row" id="resolvePanel_${alertId}">
+          <span style="flex:1;color:var(--text-muted)">Required — enter manually or dismiss</span>
+          <button class="si-resolve-act dismiss" style="border:1px solid var(--border-strong);color:var(--text-muted);background:#fff" onclick="resolveFieldAlert('${alertId}','dismiss','','')">Mark reviewed</button>
+        </div>
+      </td>
+    </tr>`;
+  };
+
   return `<div class="si-review">
+    ${buildSovSetupCard()}
+    ${buildCheckGroups()}
     <div class="si-wrap">
       <table class="si-table">
         <thead><tr><th style="width:38%">Field</th><th>Value</th></tr></thead>
@@ -4263,12 +4635,16 @@ function buildSubInfoForm(){
           ${sec('Submission Information')}
           ${v('Brokerage','Amwins Insurance Brokerage, LLC','src-brokerage')}
           ${v('Broker','Britney Benitez','src-broker,src-broker2')}
-          ${v('Broker Email','britney.benitez@amwins.com','src-email')}
+          ${vwx('Broker Email','britney.benitez@amwins.com','src-email','broker_email',
+            [{label:'Extracted',value:'britney.benitez@amwins.com'},{label:'ACORD',value:'b.benitez@amwins.com'}],
+            'fieldBrokerEmail')}
           ${v('Submission Type','Renewal','src-type,src-type2')}
-          ${vw('Need-by Date','','','Missing key field')}
+          ${vmiss('Need-by Date','needby_date')}
 
           ${sec('Insured Details')}
-          ${vw('Named Insured','Morehart Land Co.','src-insured','Suspicious extracted text')}
+          ${vwx('Named Insured','Morehart Land Co.','src-insured','insured_name',
+            [{label:'SOV',value:'Morehart Land Co.'},{label:'ACORD',value:'Morehart Land Company LLC'}],
+            'fieldNamedInsured')}
           ${v('Mailing Address','PO Box 1209','')}
           ${v('City / State / ZIP','Carpinteria, CA 93014','')}
           <tr class="si-row-link" data-src="" onclick="flashSrc(this)">
@@ -4279,12 +4655,16 @@ function buildSubInfoForm(){
           ${sec('Policy Details')}
           ${v('Policy Type','DIC — Difference in Conditions','')}
           ${v('Effective Date','2024-09-18','src-eff')}
-          ${v('Expiration Date','2024-09-18','')}
+          ${v('Expiration Date','2025-09-18','')}
           <tr class="si-row-link" data-src="src-tiv" onclick="flashSrc(this)">
-            <td class="si-lbl">TIV</td>
+            <td class="si-lbl">TIV Reported <span style="font-size:10px;color:var(--text-faint);font-weight:400">(from documents)</span></td>
+            <td class="si-val-num"><span class="si-val-edit" id="tivReported" contenteditable="true" spellcheck="false" oninput="subAutoSave(this);checkTivMatch()">$37,173,154</span></td>
+          </tr>
+          <tr class="si-row-link" data-src="">
+            <td class="si-lbl">TIV Calculated <span style="font-size:10px;color:var(--text-faint);font-weight:400">(from values table)</span></td>
             <td class="si-val-num">
-              <span class="si-val-edit" id="tivVal" contenteditable="true" spellcheck="false" oninput="subAutoSave(this);checkTivMatch()">$37,173,154</span>
-              <div class="si-mismatch-warn" id="tivWarn" onclick="event.stopPropagation();applyCalcTiv()" style="margin-top:3px;text-align:right" title="Click to use calculated value">Calculated differs: $37,125,696 — Use this</div>
+              <div class="si-tiv-calc-row"><span>$37,125,696</span><span class="si-tiv-calc-badge">Calc</span></div>
+              <div class="si-tiv-diff" id="tivDiff">Differs by $47,458 — review at Values stage</div>
             </td>
           </tr>
           ${v('EQ Deductible','10%','src-eq',true)}
@@ -4300,30 +4680,18 @@ function buildSubInfoForm(){
 }
 
 const _calcTIV=37125696;
-function applyCalcTiv(){
-  const el=document.getElementById('tivVal');
-  if(!el) return;
-  const oldVal=el.textContent.trim();
-  const newVal='$'+_calcTIV.toLocaleString();
-  el.textContent=newVal;
-  checkTivMatch();
-  logFormChange('TIV',oldVal,newVal);
-  _fieldSnap['si_TIV']=newVal;
-  const ind=document.getElementById('subSaveInd');
-  if(ind){ind.textContent='✓ Saved';ind.style.color='var(--success)';setTimeout(()=>{ind.textContent='';},2000);}
-}
 function checkTivMatch(){
-  const el=document.getElementById('tivVal');
-  const warn=document.getElementById('tivWarn');
-  if(!el||!warn) return;
+  const el=document.getElementById('tivReported');
+  const diff=document.getElementById('tivDiff');
+  if(!el||!diff) return;
   const raw=el.textContent.replace(/[^0-9.]/g,'');
   const num=parseFloat(raw);
   if(Math.abs(num-_calcTIV)<1){
-    warn.style.display='none';
+    diff.style.display='none';
   } else {
-    warn.style.display='';
-    const diff=Math.abs(num-_calcTIV);
-    warn.textContent=`Calculated differs: $${_calcTIV.toLocaleString()} (${num>_calcTIV?'+':'-'}$${Math.round(diff).toLocaleString()}) ▸`;
+    diff.style.display='';
+    const d=Math.abs(num-_calcTIV);
+    diff.textContent=`Differs by $${Math.round(d).toLocaleString()} — review at Values stage`;
   }
 }
 
